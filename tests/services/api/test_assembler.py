@@ -37,10 +37,11 @@ class TestReportAssembler(unittest.TestCase):
         )
         
         self.assertEqual(report.handle, "@test")
-        self.assertEqual(report.audience_authenticity.score, 75.0)
+        self.assertEqual(report.audience_authenticity.signal_strength, 75.0)
         self.assertEqual(report.audience_authenticity.confidence, 0.95)
         self.assertEqual(len(report.evidence_vault), 2) # 1 for engagement, 1 for auth
         self.assertEqual(report.data_completeness, "full")
+        self.assertIn("Advanced AI-generated comments", report.known_limitations[0])
 
     def test_assemble_partial_report(self):
         heuristic_res = HeuristicResult(

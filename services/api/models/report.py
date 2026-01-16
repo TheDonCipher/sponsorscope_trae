@@ -13,12 +13,14 @@ class Evidence(BaseModel):
     timestamp: str  # ISO8601
     
 class PillarScoreResponse(BaseModel):
-    score: float
+    signal_strength: float = Field(..., description="Formerly 'score'. 0-100 credibility index.")
     grade: Optional[str] = None
     confidence: float
     flags: List[str]
     evidence_links: List[str]  # List of evidence_ids
     
+from services.api.models.epistemic import EpistemicState
+
 class ReportResponse(BaseModel):
     id: str
     handle: str
@@ -26,6 +28,7 @@ class ReportResponse(BaseModel):
     generated_at: str
     methodology_version: str
     data_completeness: str  # enum value
+    epistemic_state: EpistemicState
     
     # Pillars
     true_engagement: PillarScoreResponse
@@ -38,3 +41,7 @@ class ReportResponse(BaseModel):
     # Meta
     is_archival: bool = False
     warning_banners: List[str] = []
+    known_limitations: List[str] = [
+        "Advanced AI-generated comments may evade detection.",
+        "Signals reflect probabilistic patterns, not individual intent."
+    ]

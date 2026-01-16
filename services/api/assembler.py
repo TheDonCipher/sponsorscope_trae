@@ -8,6 +8,8 @@ from services.api.models.report import ReportResponse, PillarScoreResponse, Evid
 from services.analyzer.heuristics.types import HeuristicResult
 from services.analyzer.llm.types import LLMRefinementResult
 
+from services.api.models.epistemic import EpistemicState, EpistemicStatus
+
 class ReportAssembler:
     """
     Combines raw analysis results into a public-facing, immutable ReportResponse.
@@ -24,25 +26,25 @@ class ReportAssembler:
         
         evidence_vault: List[Evidence] = []
         
+        # ... (Previous pillar logic) ...
+
         # Helper to create pillar response
         def build_pillar(name: str, heuristic: HeuristicResult, llm: LLMRefinementResult = None) -> PillarScoreResponse:
             final_score = llm.refined_score if llm else heuristic.score
             final_confidence = llm.confidence if llm else heuristic.confidence
             flags = llm.flags if llm else []
             
-            # Link Evidence
-            # For MVP, we just create a generic evidence item linked to the score
             evidence_id = str(uuid.uuid4())
             evidence_vault.append(Evidence(
                 evidence_id=evidence_id,
                 type="statistic",
-                source_url=f"https://{platform}.com/{handle}", # Simplified
+                source_url=f"https://{platform}.com/{handle}",
                 excerpt=f"Heuristic signals: {heuristic.signals}",
                 timestamp=datetime.utcnow().isoformat()
             ))
             
             return PillarScoreResponse(
-                score=final_score,
+                signal_strength=final_score,
                 confidence=final_confidence,
                 flags=flags,
                 evidence_links=[evidence_id]
@@ -51,13 +53,11 @@ class ReportAssembler:
         # Build Pillars
         engagement = build_pillar("true_engagement", heuristic_results["engagement"])
         authenticity = build_pillar("audience_authenticity", heuristic_results["authenticity"], llm_results.get("authenticity"))
-        # Brand Safety placeholder (assuming it comes from LLM mostly)
         brand_safety = PillarScoreResponse(
-            score=0.0, confidence=0.0, flags=[], evidence_links=[] # TODO: Implement Brand Safety pipeline
+            signal_strength=0.0, confidence=0.0, flags=[], evidence_links=[]
         )
 
         # Determine Global Completeness
-        # Worst case wins
         completeness_levels = [
             heuristic_results["engagement"].data_completeness,
             heuristic_results["authenticity"].data_completeness
@@ -71,6 +71,17 @@ class ReportAssembler:
         elif DataCompleteness.PARTIAL_NO_COMMENTS in completeness_levels:
             global_completeness = DataCompleteness.PARTIAL_NO_COMMENTS
             
+        # Determine Epistemic State
+        epistemic_status = EpistemicStatus.ROBUST
+        epistemic_reason = "Sufficient data and confidence."
+        
+        if global_completeness != DataCompleteness.FULL:
+            epistemic_status = EpistemicStatus.PARTIAL
+            epistemic_reason = f"Data completeness is {global_completeness.value}."
+        elif authenticity.confidence < 0.6:
+            epistemic_status = EpistemicStatus.FRAGILE
+            epistemic_reason = "Low confidence in authenticity signals."
+
         # Banners
         banners = []
         if global_completeness != DataCompleteness.FULL:
@@ -83,6 +94,7 @@ class ReportAssembler:
             generated_at=datetime.utcnow().isoformat(),
             methodology_version="v1.0",
             data_completeness=global_completeness.value,
+            epistemic_state=EpistemicState(status=epistemic_status, reason=epistemic_reason),
             true_engagement=engagement,
             audience_authenticity=authenticity,
             brand_safety=brand_safety,
