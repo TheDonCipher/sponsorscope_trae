@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Influencer Intelligence Detailed Report | SponsorScope.ai</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#bfff00",
+                        "background-light": "#f2f2f2",
+                        "background-dark": "#1a1a1a",
+                        "surface": "#262626",
+                        "glass": "rgba(38, 38, 38, 0.7)",
+                        "danger": "#FF4136",
+                        "link": "#00BFFF",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(38, 38, 38, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(191, 255, 0, 0.1);
+        }
+        .cyber-border {
+            border-left: 2px solid #bfff00;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary selection:text-black">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-72 flex-shrink-0 flex flex-col border-r border-white/10 bg-background-dark/50 backdrop-blur-xl">
+<div class="p-6 flex flex-col h-full">
+<!-- Logo Section -->
+<div class="flex items-center gap-3 mb-10">
+<div class="bg-primary p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-black font-bold">query_stats</span>
+</div>
+<div>
+<h1 class="text-white text-lg font-bold leading-none">SponsorScope.ai</h1>
+<p class="text-primary/60 text-[10px] uppercase tracking-widest font-bold mt-1">Intelligence Suite</p>
+</div>
+</div>
+<!-- Nav Links -->
+<nav class="flex-1 space-y-2">
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary border border-primary/20">
+<span class="material-symbols-outlined text-[20px] fill-1">dashboard</span>
+<p class="text-sm font-bold">Dashboard</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-[20px] text-white/60 group-hover:text-white">menu_book</span>
+<p class="text-sm font-medium text-white/70 group-hover:text-white">Methodology Appendix</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-[20px] text-white/60 group-hover:text-white">info</span>
+<p class="text-sm font-medium text-white/70 group-hover:text-white">Research Context</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-[20px] text-white/60 group-hover:text-white">settings</span>
+<p class="text-sm font-medium text-white/70 group-hover:text-white">Settings</p>
+</div>
+</nav>
+<!-- Sidebar Footer -->
+<div class="pt-6 border-t border-white/10 space-y-4">
+<div class="bg-primary/5 rounded-lg p-4 border border-primary/10">
+<p class="text-[10px] uppercase tracking-wider text-primary font-bold mb-2">Research Context</p>
+<p class="text-[11px] leading-relaxed text-white/60">Currently analyzing North American lifestyle vertical benchmarks for Q3 2024 compliance.</p>
+</div>
+<button class="w-full bg-primary text-black py-3 rounded-lg text-sm font-black flex items-center justify-center gap-2 hover:bg-primary/90 transition-transform active:scale-[0.98]">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+                        EXPORT PDF REPORT
+                    </button>
+<div class="flex items-center gap-3 px-3 py-2 text-white/50 hover:text-white cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<p class="text-xs font-medium">Help Center</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto scrollbar-hide">
+<!-- Profile Header -->
+<div class="p-8">
+<div class="glass-card rounded-xl p-6 flex flex-col md:flex-row justify-between items-center gap-6 border-l-4 border-l-primary">
+<div class="flex items-center gap-6">
+<div class="relative">
+<div class="w-24 h-24 rounded-full border-2 border-primary/30 p-1">
+<div class="w-full h-full rounded-full bg-center bg-cover" data-alt="Creator profile picture of @creator_bw" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDYEf0Vw9W4SPA-qPV_GJa3VZV8zx89_tdgapKk66hGvFDnGmpjaYd6zCsVWRUK-m-9YNwUggdqNRb7yBUFXf9yD2oR24JJiU_uj-JprP0xVycWMICJcfW7cQ8o7cR1Ts-aNaKpQJaYi-c7JYXk3iIb7nHueiIVDqkzZzKhT47qR4_HBXVzfll3ipaXitXVlL1WVy0nbVVw8aoqAMOYfWvgmE7FOi2RsQFbi4fb9OAadsD_OX99MmAVQyg2tHaGuyVRK0eMrat9IDY');"></div>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-black rounded-full p-1.5 border border-white/10">
+<img alt="Verified" class="w-4 h-4" data-alt="Verification badge icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5vIyStMrIcJ8rhr1tbg1uiu9mbEq_cLL6EvpIwgGNUDIVnw-kIpibFTvIsuBMhOGd86Q1_K6eDiMRf0DVQcsubc2JKMpp7QMA0YMn_e0h_aplzP2eTHzlWOSgajcwTGEwCF2z079cCD4RzNoCN03nxLLoZ0dBmRiYhx9r2ZUEQKrfPtl2RFn6743jD3zm1zFwgniNF3iuOdx5psGk30TyUtwyJvlLLDeeaq5QS-iRnKfRXUw6c9_k3tr-Foo84IT1E3bsYi6Ljmg"/>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-3">
+<h2 class="text-3xl font-black tracking-tight">@creator_bw</h2>
+<div class="flex gap-1.5">
+<span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-bold text-white/60 border border-white/10">TIKTOK</span>
+<span class="px-2 py-0.5 rounded bg-white/5 text-[10px] font-bold text-white/60 border border-white/10">INSTAGRAM</span>
+</div>
+</div>
+<div class="flex items-center gap-4 text-white/50 text-sm">
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-primary">schedule</span> Scanned 2 hours ago</span>
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">location_on</span> Los Angeles, CA</span>
+</div>
+</div>
+</div>
+<button class="bg-white/5 hover:bg-white/10 border border-white/10 px-6 py-2.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">refresh</span> Refresh Live Data
+                    </button>
+</div>
+<!-- 4-Pillar Scores -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+<!-- Score Card 1 -->
+<div class="glass-card p-5 rounded-xl flex flex-col justify-between h-48 group">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold mb-1">True Engagement</p>
+<h3 class="text-4xl font-black text-primary">88%</h3>
+</div>
+<div class="w-12 h-12 relative">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-white/5" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" stroke-width="3"></circle>
+<circle class="text-primary" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" stroke-dasharray="125.6" stroke-dashoffset="15" stroke-width="3"></circle>
+</svg>
+</div>
+</div>
+<div class="mt-auto">
+<p class="text-[10px] text-white/40 mb-2 font-medium">CONFIDENCE INTERVAL</p>
+<div class="h-6 w-full flex items-end gap-[2px]">
+<div class="bg-primary/20 h-2 w-full rounded-t-sm"></div>
+<div class="bg-primary/30 h-3 w-full rounded-t-sm"></div>
+<div class="bg-primary/40 h-5 w-full rounded-t-sm"></div>
+<div class="bg-primary h-6 w-full rounded-t-sm"></div>
+<div class="bg-primary/60 h-4 w-full rounded-t-sm"></div>
+<div class="bg-primary/30 h-2 w-full rounded-t-sm"></div>
+</div>
+</div>
+</div>
+<!-- Score Card 2 -->
+<div class="glass-card p-5 rounded-xl flex flex-col justify-between h-48">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold mb-1">Audience Authenticity</p>
+<h3 class="text-4xl font-black text-primary">92%</h3>
+</div>
+<div class="w-12 h-12 relative">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-white/5" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" stroke-width="3"></circle>
+<circle class="text-primary" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" stroke-dasharray="125.6" stroke-dashoffset="10" stroke-width="3"></circle>
+</svg>
+</div>
+</div>
+<div class="mt-auto">
+<p class="text-[10px] text-white/40 mb-2 font-medium">CONFIDENCE INTERVAL</p>
+<div class="h-6 w-full flex items-end gap-[2px]">
+<div class="bg-primary/20 h-3 w-full rounded-t-sm"></div>
+<div class="bg-primary/30 h-4 w-full rounded-t-sm"></div>
+<div class="bg-primary h-6 w-full rounded-t-sm"></div>
+<div class="bg-primary/60 h-5 w-full rounded-t-sm"></div>
+<div class="bg-primary/40 h-3 w-full rounded-t-sm"></div>
+<div class="bg-primary/20 h-2 w-full rounded-t-sm"></div>
+</div>
+</div>
+</div>
+<!-- Score Card 3 -->
+<div class="glass-card p-5 rounded-xl flex flex-col justify-between h-48 border-b-2 border-b-primary/30">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold mb-1">Brand Safety</p>
+<h3 class="text-4xl font-black text-primary">98%</h3>
+</div>
+<div class="w-12 h-12 relative">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-white/5" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" stroke-width="3"></circle>
+<circle class="text-primary" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" stroke-dasharray="125.6" stroke-dashoffset="2" stroke-width="3"></circle>
+</svg>
+</div>
+</div>
+<div class="mt-auto">
+<p class="text-[10px] text-white/40 mb-2 font-medium">CONFIDENCE INTERVAL</p>
+<div class="h-6 w-full flex items-end gap-[2px]">
+<div class="bg-primary/40 h-4 w-full rounded-t-sm"></div>
+<div class="bg-primary/60 h-5 w-full rounded-t-sm"></div>
+<div class="bg-primary h-6 w-full rounded-t-sm"></div>
+<div class="bg-primary/80 h-6 w-full rounded-t-sm"></div>
+<div class="bg-primary h-6 w-full rounded-t-sm"></div>
+<div class="bg-primary/60 h-4 w-full rounded-t-sm"></div>
+</div>
+</div>
+</div>
+<!-- Score Card 4 -->
+<div class="glass-card p-5 rounded-xl flex flex-col justify-between h-48">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold mb-1">Niche Credibility</p>
+<h3 class="text-4xl font-black text-primary">74%</h3>
+</div>
+<div class="w-12 h-12 relative">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-white/5" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" stroke-width="3"></circle>
+<circle class="text-primary" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" stroke-dasharray="125.6" stroke-dashoffset="32" stroke-width="3"></circle>
+</svg>
+</div>
+</div>
+<div class="mt-auto">
+<p class="text-[10px] text-white/40 mb-2 font-medium">CONFIDENCE INTERVAL</p>
+<div class="h-6 w-full flex items-end gap-[2px]">
+<div class="bg-primary/10 h-1 w-full rounded-t-sm"></div>
+<div class="bg-primary/20 h-2 w-full rounded-t-sm"></div>
+<div class="bg-primary/40 h-4 w-full rounded-t-sm"></div>
+<div class="bg-primary/60 h-5 w-full rounded-t-sm"></div>
+<div class="bg-primary/30 h-3 w-full rounded-t-sm"></div>
+<div class="bg-primary/10 h-1 w-full rounded-t-sm"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+<!-- Left: Engagement Chart & Evidence Trail -->
+<div class="lg:col-span-2 space-y-8">
+<!-- Engagement Breakdown Chart -->
+<div class="glass-card rounded-xl p-6">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h4 class="text-lg font-bold">Engagement Breakdown</h4>
+<p class="text-xs text-white/40">Technical line graph: Comment-to-Like Ratio</p>
+</div>
+<div class="text-right">
+<p class="text-2xl font-bold text-primary">0.12 avg</p>
+<p class="text-[10px] text-green-400 font-bold">+2.4% PERFORMANCE</p>
+</div>
+</div>
+<div class="h-64 w-full relative">
+<svg class="w-full h-full preserve-3d" viewbox="0 0 1000 300">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#bfff00" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#bfff00" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,200 Q100,150 200,180 T400,120 T600,220 T800,50 T1000,100 L1000,300 L0,300 Z" fill="url(#chartGradient)"></path>
+<path d="M0,200 Q100,150 200,180 T400,120 T600,220 T800,50 T1000,100" fill="none" stroke="#bfff00" stroke-width="3"></path>
+</svg>
+<div class="absolute bottom-0 left-0 right-0 flex justify-between px-2 pt-4 border-t border-white/5">
+<span class="text-[10px] font-bold text-white/30">POST 1</span>
+<span class="text-[10px] font-bold text-white/30">POST 10</span>
+<span class="text-[10px] font-bold text-white/30">POST 20</span>
+<span class="text-[10px] font-bold text-white/30">POST 30</span>
+</div>
+</div>
+</div>
+<!-- Statistical Heuristics Section -->
+<div class="glass-card rounded-xl p-6">
+<h4 class="text-lg font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                                Statistical Heuristics
+                            </h4>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead>
+<tr class="text-white/30 border-b border-white/5 uppercase text-[10px] tracking-widest font-bold">
+<th class="pb-4">Metric Heuristic</th>
+<th class="pb-4">Current Score</th>
+<th class="pb-4">Benchmark Delta</th>
+<th class="pb-4">Stability</th>
+<th class="pb-4 text-right">Methodology</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="py-4 font-bold text-white/80">Follower Velocity</td>
+<td class="py-4 text-primary font-mono">+1,242/day</td>
+<td class="py-4 text-green-400 font-mono">+14.2%</td>
+<td class="py-4">
+<div class="w-16 h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="w-4/5 h-full bg-primary"></div>
+</div>
+</td>
+<td class="py-4 text-right">
+<span class="material-symbols-outlined text-[18px] text-white/30 cursor-help">info</span>
+</td>
+</tr>
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="py-4 font-bold text-white/80">Comment Entropy</td>
+<td class="py-4 text-primary font-mono">0.842 h</td>
+<td class="py-4 text-red-400 font-mono">-2.1%</td>
+<td class="py-4">
+<div class="w-16 h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="w-1/2 h-full bg-primary"></div>
+</div>
+</td>
+<td class="py-4 text-right">
+<span class="material-symbols-outlined text-[18px] text-white/30 cursor-help">info</span>
+</td>
+</tr>
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="py-4 font-bold text-white/80">Bot Probability</td>
+<td class="py-4 text-primary font-mono">4.12%</td>
+<td class="py-4 text-green-400 font-mono">-0.8%</td>
+<td class="py-4">
+<div class="w-16 h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="w-11/12 h-full bg-primary"></div>
+</div>
+</td>
+<td class="py-4 text-right">
+<span class="material-symbols-outlined text-[18px] text-white/30 cursor-help">info</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right: Evidence Trail Panel -->
+<div class="lg:col-span-1">
+<div class="glass-card rounded-xl h-full flex flex-col max-h-[1100px]">
+<div class="p-6 border-b border-white/5">
+<h4 class="text-lg font-bold">Evidence Trail</h4>
+<p class="text-xs text-white/40">Recent Activity Analysis</p>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-hide">
+<!-- Evidence Card 1 -->
+<div class="bg-white/5 border border-white/10 rounded-lg p-3 space-y-3">
+<div class="flex gap-3">
+<div class="w-16 h-16 rounded bg-cover bg-center shrink-0" data-alt="Thumbnail of a high-tech lifestyle post" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBKs0WfgpXhpYe0RHk-LEIKpzTMjAuNDUxS16q_Y4WLg9teM7I8PPQREvb_cxnXMyZeRqACZJi3akM3j-P5-3A1wcA-RIFdskoOQoOF5kWYTw151v0_zS8dyMJr2MrMCn0wT7RKukBC_qfxmvSgbBZIMd0Y_PBk_yO9ybywpkE4g6vD07yEtKNLDZ2MAzwEbjuqdcvNTq1sg6UVadyNobA_LRt1kh5nUJSEJ6NrG5CvLb4mgzAznJtjCzNv5tbVF-H9fPE0a4Dvs1M');"></div>
+<div class="flex flex-col justify-between">
+<p class="text-xs font-bold leading-tight">Analyzing the latest hardware stack in the studio...</p>
+<span class="text-[10px] text-white/40 uppercase font-bold">Posted 4h ago</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-white/5">
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-500/10 border border-green-500/20 text-[9px] font-black text-green-400">
+<div class="w-1 h-1 rounded-full bg-green-400"></div>
+                                            SAFE CONTENT
+                                        </div>
+<a class="text-[10px] font-bold text-link flex items-center gap-1" href="#">
+                                            VIEW SOURCE <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Evidence Card 2 -->
+<div class="bg-white/5 border border-white/10 rounded-lg p-3 space-y-3">
+<div class="flex gap-3">
+<div class="w-16 h-16 rounded bg-cover bg-center shrink-0" data-alt="Abstract tech background thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDoV3C9Ft0eNlrLArUbz4RCoiaxVwo36M9-AVZArWCEhKq-9Yfc8qbu7v6aRVk-CGUGMVONktlnnrPKOj8t945bWNCE3U5KDupTOp6uCYEeJqLuDTleWgQAzt2YQuCq-OkAaIV0cH4G0ecUZqaumBwp_XkRAHSUJugzN0BDbMDlF9RB8AE9nbw1Lb9ZPJDk7rh2B1FRGP-8XaTI5rY4iIYtvdxz34cyno5fxohD5lWrM67M_WyzFxWP-qhtEJV9RC874vOKa9F8Z9s');"></div>
+<div class="flex flex-col justify-between">
+<p class="text-xs font-bold leading-tight">Giveaway: Win the ultimate gaming peripherals pack!</p>
+<span class="text-[10px] text-white/40 uppercase font-bold">Posted 1d ago</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-white/5">
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20 text-[9px] font-black text-amber-400">
+<div class="w-1 h-1 rounded-full bg-amber-400"></div>
+                                            PROMO DETECTED
+                                        </div>
+<a class="text-[10px] font-bold text-link flex items-center gap-1" href="#">
+                                            VIEW SOURCE <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Evidence Card 3 -->
+<div class="bg-white/5 border border-white/10 rounded-lg p-3 space-y-3">
+<div class="flex gap-3">
+<div class="w-16 h-16 rounded bg-cover bg-center shrink-0" data-alt="Digital creator at a desk thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDRGqu_c3x65JRrDtAFxYa4QOp8ySAAH9Tu_rD0dcjYWAo6bb0NMQ_4jscdisTCcAL5Fu6uzCYUSSjzzKMA1-zqGERtzN2GlKQ1UKiYpaFLDRe2FM-PJWydr9e21IGyDXxD2E1AQxx6srBRdp91HqS905ZJApd5JL3PjknCxenYTjHN8RqNprMdql4Tf_ifM7N8tmhhYtpBFZa7BKsbH8gTZxnkPHJGsXq2CVsdLevVl4GgA29Wy7VldVIGPmELBQgVez1bphiydlU');"></div>
+<div class="flex flex-col justify-between">
+<p class="text-xs font-bold leading-tight">Morning routine of a high-growth tech founder.</p>
+<span class="text-[10px] text-white/40 uppercase font-bold">Posted 3d ago</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-white/5">
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-green-500/10 border border-green-500/20 text-[9px] font-black text-green-400">
+<div class="w-1 h-1 rounded-full bg-green-400"></div>
+                                            SAFE CONTENT
+                                        </div>
+<a class="text-[10px] font-bold text-link flex items-center gap-1" href="#">
+                                            VIEW SOURCE <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Evidence Card 4 -->
+<div class="bg-white/5 border border-white/10 rounded-lg p-3 space-y-3">
+<div class="flex gap-3">
+<div class="w-16 h-16 rounded bg-cover bg-center shrink-0" data-alt="Abstract gradient tech pattern" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDA4Gwle3x4SH5MDyP5yzn1OflIUrreuI50uWkOtsUJ-SqGp2G9Qb_zPuAj6R3uOI19dn0xhjgOFiFnBpdSEc_gP77OD8Af93MoTFyZaEAEgwFjfe35tbmjpNUjzb_PPJxBhODUKy9oFE0ZmGrF5Bd750VwtvSnovxkeAzdkDAwMa9LJxlmPic_t_dTbEVa9oOOIyICcp62CmSesRpihjbBP_XyH1tMbY5nwdJy3X5qzjib53-6LC5L8gbqMkgqJs-ID_IxI0Fpyy8');"></div>
+<div class="flex flex-col justify-between">
+<p class="text-xs font-bold leading-tight">Let's talk about the controversial new policy update.</p>
+<span class="text-[10px] text-white/40 uppercase font-bold">Posted 1w ago</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-white/5">
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-red-500/10 border border-red-500/20 text-[9px] font-black text-danger">
+<div class="w-1 h-1 rounded-full bg-danger"></div>
+                                            POLITICAL MARKER
+                                        </div>
+<a class="text-[10px] font-bold text-link flex items-center gap-1" href="#">
+                                            VIEW SOURCE <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-white/5">
+<button class="w-full text-center text-xs font-bold text-white/40 hover:text-white transition-colors">
+                                    LOAD 50+ MORE AUDIT LOGS
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="p-8 border-t border-white/5 flex justify-between items-center bg-background-dark">
+<p class="text-[10px] text-white/30 uppercase tracking-widest font-bold">© 2024 SponsorScope Intelligence Systems. All Rights Reserved.</p>
+<div class="flex gap-6 text-[10px] text-white/30 font-bold uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">Privacy Engine</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Compute</a>
+<a class="hover:text-primary transition-colors" href="#">API Endpoint</a>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

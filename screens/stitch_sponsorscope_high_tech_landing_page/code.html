@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SponsorScope.ai - Influencer Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00c78b",
+                        "background-light": "#f9fafb",
+                        "background-dark": "#1b212d",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#242c38",
+                        "border-light": "#e5e7eb",
+                        "border-dark": "#374151",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for high-tech feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        .gauge-mask {
+            mask: radial-gradient(transparent 60%, black 61%);
+            -webkit-mask: radial-gradient(transparent 60%, black 61%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#101816] dark:text-white font-display overflow-x-hidden antialiased">
+<!-- Top Navigation -->
+<nav class="sticky top-0 z-50 border-b border-border-light dark:border-border-dark bg-surface-light/90 dark:bg-surface-dark/90 backdrop-blur-md">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<!-- Logo -->
+<div class="flex items-center gap-2">
+<div class="flex items-center justify-center size-8 rounded bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-xl">analytics</span>
+</div>
+<span class="text-lg font-bold tracking-tight text-[#101816] dark:text-white">SponsorScope.ai</span>
+</div>
+<!-- Desktop Nav -->
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="#">Methodology</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" href="#">API Docs</a>
+</div>
+<!-- Action -->
+<div class="flex items-center gap-4">
+<a class="text-sm font-medium text-slate-600 dark:text-slate-300 hidden sm:block" href="#">Login</a>
+<button class="flex items-center justify-center h-9 px-4 rounded-lg bg-primary hover:bg-emerald-400 text-[#101816] text-sm font-bold transition-all shadow-sm shadow-primary/20">
+                        Get Started
+                    </button>
+</div>
+</div>
+</div>
+</nav>
+<main class="flex flex-col min-h-screen">
+<!-- Hero Section -->
+<section class="relative pt-16 pb-12 sm:pt-24 sm:pb-20 lg:pb-24 overflow-hidden">
+<!-- Background Decoration -->
+<div class="absolute inset-0 -z-10 opacity-30 dark:opacity-20 pointer-events-none" style="background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 24px 24px;"></div>
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl -z-10 bg-gradient-to-b from-transparent via-primary/5 to-transparent"></div>
+<div class="layout-content-container max-w-[960px] mx-auto px-4 flex flex-col items-center text-center">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-border-light dark:border-border-dark mb-6">
+<span class="flex size-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">Live System v2.4</span>
+</div>
+<h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#101816] dark:text-white mb-6 leading-[1.1]">
+                    The operating system for <br class="hidden sm:block"/>
+<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-emerald-600 dark:to-emerald-400">influencer vetting.</span>
+</h1>
+<p class="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mb-10 leading-relaxed">
+                    Real-time analysis on engagement, authenticity, and brand safety. 
+                    Institutional-grade data for modern marketing teams.
+                </p>
+<!-- Search Component -->
+<div class="w-full max-w-[560px] relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-emerald-400 rounded-xl opacity-20 group-hover:opacity-40 blur transition duration-200"></div>
+<div class="relative flex items-center w-full h-14 sm:h-16 bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-xl overflow-hidden">
+<div class="pl-5 text-slate-400 dark:text-slate-500">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full h-full bg-transparent border-none focus:ring-0 text-[#101816] dark:text-white placeholder-slate-400 text-base sm:text-lg" placeholder="e.g., @mkbhd, @charli_damilio..." type="text"/>
+<div class="pr-2">
+<button class="h-10 sm:h-12 px-6 rounded-lg bg-primary hover:bg-emerald-400 text-[#101816] font-bold text-sm transition-colors">
+                                Analyze
+                            </button>
+</div>
+</div>
+</div>
+<!-- Chips -->
+<div class="flex flex-wrap justify-center gap-3 mt-8">
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-xl text-pink-600">photo_camera</span>
+<span class="text-sm font-medium">Instagram</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-xl text-[#101816] dark:text-white">music_note</span>
+<span class="text-sm font-medium">TikTok</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-xl text-red-600">play_arrow</span>
+<span class="text-sm font-medium">YouTube</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Live Intelligence Dashboard -->
+<section class="flex-1 bg-slate-50 dark:bg-[#151a23] py-16 border-t border-border-light dark:border-border-dark">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
+<div>
+<h2 class="text-2xl font-bold text-[#101816] dark:text-white flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                            Live Intelligence Feed
+                        </h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Real-time data processing from global nodes.</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs font-mono text-slate-500 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-1 rounded">API_LATENCY: 42ms</span>
+<span class="text-xs font-mono text-primary bg-primary/10 border border-primary/20 px-2 py-1 rounded">SYSTEM: ONLINE</span>
+</div>
+</div>
+<!-- 4-Pillar Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1: Engagement (Sparkline) -->
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark shadow-sm hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-xs font-bold text-slate-500 uppercase tracking-wider">True Engagement</p>
+<h3 class="text-3xl font-bold text-[#101816] dark:text-white mt-1">8.4<span class="text-lg text-slate-400 font-medium">/10</span></h3>
+</div>
+<div class="p-2 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg text-emerald-600 dark:text-emerald-400">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+</div>
+<div class="h-16 w-full mb-4">
+<!-- CSS Sparkline Simulation -->
+<svg class="w-full h-full overflow-visible" viewbox="0 0 100 40">
+<defs>
+<lineargradient id="gradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#00c78b" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#00c78b" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,40 L0,30 L10,25 L20,32 L30,15 L40,20 L50,10 L60,25 L70,20 L80,10 L90,15 L100,5" fill="url(#gradient)" stroke="none"></path>
+<path d="M0,30 L10,25 L20,32 L30,15 L40,20 L50,10 L60,25 L70,20 L80,10 L90,15 L100,5" fill="none" stroke="#00c78b" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<circle class="animate-pulse" cx="100" cy="5" fill="#00c78b" r="3"></circle>
+</svg>
+</div>
+<div class="flex items-center gap-2 text-sm">
+<span class="text-emerald-600 font-semibold">+12.5%</span>
+<span class="text-slate-500">vs 30d avg</span>
+</div>
+</div>
+<!-- Card 2: Authenticity (Gauge) -->
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<p class="text-xs font-bold text-slate-500 uppercase tracking-wider">Audience Quality</p>
+<span class="material-symbols-outlined text-slate-400 text-lg">verified_user</span>
+</div>
+<div class="flex flex-col items-center justify-center py-4">
+<div class="relative size-28 rounded-full bg-slate-100 dark:bg-slate-800" style="background: conic-gradient(#00c78b 0% 78%, #e2e8f0 78% 100%);">
+<div class="absolute inset-2 bg-surface-light dark:bg-surface-dark rounded-full flex flex-col items-center justify-center">
+<span class="text-2xl font-bold text-[#101816] dark:text-white">78%</span>
+<span class="text-xs text-slate-500 uppercase">Authentic</span>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center text-sm border-t border-dashed border-slate-200 dark:border-slate-700 pt-3 mt-1">
+<span class="text-slate-500">Bot Est.</span>
+<span class="text-red-500 font-medium font-mono">2.1% (Low)</span>
+</div>
+</div>
+<!-- Card 3: Brand Safety (List) -->
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<p class="text-xs font-bold text-slate-500 uppercase tracking-wider">Brand Safety</p>
+<span class="material-symbols-outlined text-amber-500 text-lg">warning</span>
+</div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-2xl font-bold text-[#101816] dark:text-white">A- <span class="text-sm font-normal text-slate-500">Score</span></h3>
+<div class="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-xs font-bold px-2 py-1 rounded">SAFE</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between text-sm">
+<div class="flex items-center gap-2">
+<div class="size-1.5 rounded-full bg-emerald-500"></div>
+<span class="text-slate-600 dark:text-slate-300">Profanity</span>
+</div>
+<span class="text-slate-400 font-mono">0.01%</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<div class="flex items-center gap-2">
+<div class="size-1.5 rounded-full bg-emerald-500"></div>
+<span class="text-slate-600 dark:text-slate-300">Politics</span>
+</div>
+<span class="text-slate-400 font-mono">0.0%</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<div class="flex items-center gap-2">
+<div class="size-1.5 rounded-full bg-amber-500"></div>
+<span class="text-slate-600 dark:text-slate-300">Competitors</span>
+</div>
+<span class="text-slate-400 font-mono">12.4%</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Velocity (Bar Chart) -->
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<p class="text-xs font-bold text-slate-500 uppercase tracking-wider">Growth Velocity</p>
+<span class="material-symbols-outlined text-blue-500 text-lg">speed</span>
+</div>
+<h3 class="text-2xl font-bold text-[#101816] dark:text-white mb-1">+1.2k<span class="text-sm text-slate-500 font-normal">/day</span></h3>
+<div class="flex items-end justify-between h-24 gap-2 mt-4">
+<!-- Simulated bars -->
+<div class="w-full bg-slate-100 dark:bg-slate-700 rounded-t-sm h-[40%] group relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">Mon</div>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 rounded-t-sm h-[60%] group relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">Tue</div>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 rounded-t-sm h-[50%] group relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">Wed</div>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-600 rounded-t-sm h-[75%] group relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">Thu</div>
+</div>
+<div class="w-full bg-primary/80 rounded-t-sm h-[90%] group relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-1 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">Fri</div>
+</div>
+</div>
+<div class="text-xs text-center text-slate-400 mt-2 font-mono">LAST 5 DAYS</div>
+</div>
+</div>
+<!-- Comparison Table Preview -->
+<div class="mt-12">
+<h3 class="text-lg font-bold text-[#101816] dark:text-white mb-4">Latest Scans</h3>
+<div class="overflow-hidden rounded-xl border border-border-light dark:border-border-dark">
+<table class="w-full bg-surface-light dark:bg-surface-dark text-left text-sm">
+<thead class="bg-slate-50 dark:bg-slate-800 text-slate-500 font-medium border-b border-border-light dark:border-border-dark">
+<tr>
+<th class="px-6 py-4">Influencer</th>
+<th class="px-6 py-4">Platform</th>
+<th class="px-6 py-4">Engagement</th>
+<th class="px-6 py-4">Risk Level</th>
+<th class="px-6 py-4">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light dark:divide-border-dark">
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 font-medium text-[#101816] dark:text-white">@tech_guru_99</td>
+<td class="px-6 py-4 text-slate-500 flex items-center gap-2">
+<span class="material-symbols-outlined text-base">photo_camera</span> Instagram
+                                     </td>
+<td class="px-6 py-4 font-mono text-slate-600 dark:text-slate-300">4.8%</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400">
+                                            Low Risk
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400">
+<span class="size-1.5 rounded-full bg-slate-400"></span> Scanned 2m ago
+                                         </span>
+</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 font-medium text-[#101816] dark:text-white">@lifestyle_anna</td>
+<td class="px-6 py-4 text-slate-500 flex items-center gap-2">
+<span class="material-symbols-outlined text-base">music_note</span> TikTok
+                                     </td>
+<td class="px-6 py-4 font-mono text-slate-600 dark:text-slate-300">8.2%</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400">
+                                            Medium Risk
+                                        </span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400">
+<span class="size-1.5 rounded-full bg-primary"></span> Processing
+                                        </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="border-t border-border-light dark:border-border-dark bg-white dark:bg-[#0f131a] py-8">
+<div class="max-w-[1280px] mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm text-slate-500">© 2024 SponsorScope AI Inc.</p>
+<div class="flex gap-6 text-sm text-slate-500">
+<a class="hover:text-primary" href="#">Privacy</a>
+<a class="hover:text-primary" href="#">Terms</a>
+<a class="hover:text-primary" href="#">Enterprise</a>
+</div>
+</div>
+</footer>
+</main>
+</body></html>
