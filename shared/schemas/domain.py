@@ -10,6 +10,7 @@ class DataCompleteness(str, Enum):
     PARTIAL_NO_IMAGES = "partial_no_images"
     TEXT_ONLY = "text_only"
     ARCHIVAL = "archival"  # Data from cache/history, no fresh scrape
+    UNAVAILABLE = "unavailable" # Private or deleted
     FAILED = "failed"
 
 class Platform(str, Enum):
