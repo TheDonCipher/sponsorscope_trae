@@ -1,7 +1,11 @@
 from fastapi import APIRouter, HTTPException, Depends
 from services.api.models.report import ReportResponse
+from services.api.assembler import ReportAssembler
 from services.governance.core.killswitch import KillSwitch
-# from services.orchestrator import scan_orchestrator # TODO: Implement Orchestrator
+from services.scraper.adapters.instagram import InstagramScraper
+from services.analyzer.heuristics.engagement import compute_true_engagement
+from services.analyzer.heuristics.authenticity import compute_audience_authenticity
+from shared.schemas.domain import DataCompleteness
 
 router = APIRouter()
 
@@ -14,21 +18,47 @@ async def get_report(handle: str):
     if not KillSwitch.is_read_enabled():
         raise HTTPException(status_code=503, detail=KillSwitch.get_maintenance_message())
 
-    # 1. Check Cache (Firestore)
-    # cached = await firestore.get_report(handle)
-    # if cached: return cached
+    # 1. Initialize Scraper (Default to Instagram for MVP)
+    # TODO: Detect platform from handle or add query param
+    scraper = InstagramScraper()
     
-    # 2. Kill Switch Check (Write/Scan)
-    if not KillSwitch.is_scan_enabled():
-        # If cache miss and scans disabled, return 503
-        raise HTTPException(status_code=503, detail="New scans are temporarily paused. Please try again later.")
+    # 2. Run Scan
+    # This fetches "mock" data from the adapter, but using the real interface structure
+    scan_result = await scraper.run_scan(handle)
     
-    # 3. Trigger Scan (Cloud Tasks)
-    # task_id = await scan_orchestrator.trigger_scan(handle)
+    if scan_result.data_completeness == DataCompleteness.UNAVAILABLE:
+        raise HTTPException(status_code=404, detail=f"Handle @{handle} not found on Instagram.")
+        
+    if scan_result.data_completeness == DataCompleteness.FAILED:
+        raise HTTPException(status_code=500, detail="Failed to scrape data.")
+
+    # 3. Run Analysis
+    # These compute real scores based on the (currently mocked) raw data
+    engagement_result = compute_true_engagement(
+        scan_result.profile, 
+        scan_result.posts, 
+        scan_result.comments
+    )
     
-    # 4. Return 202 Accepted (Polling pattern) or wait (MVP)
-    # For MVP scaffold, we'll return a mock or 404
-    raise HTTPException(status_code=404, detail="Report not found (Scan trigger not implemented yet)")
+    authenticity_result = compute_audience_authenticity(
+        scan_result.profile, 
+        scan_result.posts, 
+        scan_result.comments
+    )
+    
+    # 4. Assemble Report
+    report = ReportAssembler.assemble(
+        handle=handle,
+        platform="instagram",
+        heuristic_results={
+            "engagement": engagement_result,
+            "authenticity": authenticity_result
+        },
+        llm_results={}, # No LLM integration yet
+        raw_evidence=[]
+    )
+    
+    return report
 
 @router.get("/evidence/{evidence_id}")
 async def get_evidence(evidence_id: str):

@@ -30,6 +30,15 @@ export interface PillarScore {
   confidence: number; // 0.0 - 1.0
   flags: string[];
   evidence_links: string[];
+  history: number[]; // Historical data for sparklines
+  benchmark_delta: number; // Percentage difference from niche average
+}
+
+export interface Metric {
+  name: string;
+  value: string;
+  delta: string;
+  stability: number;
 }
 
 export interface Report {
@@ -44,6 +53,9 @@ export interface Report {
   true_engagement: PillarScore;
   audience_authenticity: PillarScore;
   brand_safety: PillarScore;
+  niche_credibility?: PillarScore;
+  
+  profile_metrics: Metric[];
   
   evidence_vault: Evidence[];
   warning_banners: string[];

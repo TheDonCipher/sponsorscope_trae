@@ -1,5 +1,6 @@
 from typing import List, Optional, Literal
 from pydantic import BaseModel, Field
+from services.api.models.epistemic import EpistemicState
 
 class Evidence(BaseModel):
     """
@@ -18,8 +19,14 @@ class PillarScoreResponse(BaseModel):
     confidence: float
     flags: List[str]
     evidence_links: List[str]  # List of evidence_ids
-    
-from services.api.models.epistemic import EpistemicState
+    history: List[float] = [] # Historical data for sparklines
+    benchmark_delta: float = 0.0 # Percentage difference from niche average
+
+class Metric(BaseModel):
+    name: str
+    value: str
+    delta: str
+    stability: float # 0.0 to 1.0
 
 class ReportResponse(BaseModel):
     id: str
@@ -34,6 +41,10 @@ class ReportResponse(BaseModel):
     true_engagement: PillarScoreResponse
     audience_authenticity: PillarScoreResponse
     brand_safety: PillarScoreResponse
+    niche_credibility: Optional[PillarScoreResponse] = None # Added for V2 dashboard
+    
+    # Detailed Stats
+    profile_metrics: List[Metric] = []
     
     # Evidence Vault
     evidence_vault: List[Evidence]
