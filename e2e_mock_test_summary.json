@@ -1,0 +1,689 @@
+{
+  "total_tests": 8,
+  "passed_tests": 4,
+  "failed_tests": 4,
+  "success_rate": 50.0,
+  "results": [
+    {
+      "handle": "nike",
+      "platform": "instagram",
+      "test_start": "2026-01-17T10:39:31.448007",
+      "expected": "full_data",
+      "status": "failed",
+      "error": "list index out of range",
+      "duration": 0.004914283752441406
+    },
+    {
+      "handle": "charlidamelio",
+      "platform": "tiktok",
+      "test_start": "2026-01-17T10:39:31.455069",
+      "expected": "full_data",
+      "status": "failed",
+      "error": "list index out of range",
+      "duration": 0.000438690185546875
+    },
+    {
+      "handle": "test_private_123",
+      "platform": "instagram",
+      "test_start": "2026-01-17T10:39:31.456724",
+      "expected": "partial_blocked",
+      "status": "success",
+      "duration": 0.0019366741180419922,
+      "data_completeness": "partial_no_comments",
+      "epistemic_state": "LIMITED",
+      "verification_results": {
+        "warning_banners": {
+          "expected_warning": "blocked",
+          "warning_rendered": true,
+          "data_completeness": "partial_no_comments",
+          "status": "verified"
+        },
+        "llm_calibration": {
+          "bounds_compliant": true,
+          "violations": [],
+          "status": "verified"
+        },
+        "pii_safety": {
+          "pii_safe": true,
+          "violations": [],
+          "total_evidence": 4,
+          "status": "verified"
+        },
+        "screenshot_generation": {
+          "filename": "20260117_103931_test_private_123_instagram_partial_no_comments_limited.png",
+          "timestamp": "2026-01-17T10:39:31.458618",
+          "handle": "test_private_123",
+          "platform": "instagram",
+          "data_completeness": "partial_no_comments",
+          "epistemic_status": "LIMITED",
+          "path": "docs\\audits\\20260117_103931_test_private_123_instagram_partial_no_comments_limited.png",
+          "watermark_applied": true,
+          "anti_tampering": true
+        }
+      },
+      "report_data": {
+        "handle": "test_private_123",
+        "platform": "instagram",
+        "generated_at": "2026-01-17T08:39:31.457984",
+        "data_completeness": "partial_no_comments",
+        "epistemic_state": {
+          "status": "LIMITED",
+          "data_points_analyzed": 120,
+          "confidence": 0.75
+        },
+        "calibration": {
+          "confidence_recalibration": {
+            "original_confidence": 0.75,
+            "recalibrated_confidence": 0.75
+          }
+        },
+        "true_engagement": {
+          "signal_strength": 58.8,
+          "confidence": 0.75,
+          "base_score": 65,
+          "adjusted_score": 58.8,
+          "adjustment_percentage": -9.59,
+          "history": [
+            81,
+            89,
+            95,
+            53,
+            51,
+            76
+          ]
+        },
+        "audience_authenticity": {
+          "signal_strength": 73.5,
+          "confidence": 0.75,
+          "base_score": 67,
+          "adjusted_score": 73.5,
+          "adjustment_percentage": 9.65,
+          "history": [
+            79,
+            67,
+            85,
+            88,
+            61,
+            75
+          ]
+        },
+        "brand_safety": {
+          "signal_strength": 74.1,
+          "confidence": 0.75,
+          "base_score": 68,
+          "adjusted_score": 74.1,
+          "adjustment_percentage": 8.94,
+          "history": [
+            51,
+            82,
+            54,
+            81,
+            56,
+            50
+          ]
+        },
+        "evidence_vault": [
+          {
+            "evidence_id": "evidence_test_private_123_0",
+            "type": "brand_safety",
+            "excerpt": "Public content excerpt 0 from @test_private_123 - no PII detected",
+            "source_url": "https://instagram.com/test_private_123/post/0",
+            "timestamp": "2025-12-26T08:39:31.457845",
+            "confidence": 0.8903114443469811
+          },
+          {
+            "evidence_id": "evidence_test_private_123_1",
+            "type": "authenticity",
+            "excerpt": "Public content excerpt 1 from @test_private_123 - no PII detected",
+            "source_url": "https://instagram.com/test_private_123/post/1",
+            "timestamp": "2026-01-11T08:39:31.457879",
+            "confidence": 0.9116407140104559
+          },
+          {
+            "evidence_id": "evidence_test_private_123_2",
+            "type": "authenticity",
+            "excerpt": "Public content excerpt 2 from @test_private_123 - no PII detected",
+            "source_url": "https://instagram.com/test_private_123/post/2",
+            "timestamp": "2025-12-21T08:39:31.457885",
+            "confidence": 0.8950988241367347
+          },
+          {
+            "evidence_id": "evidence_test_private_123_3",
+            "type": "engagement",
+            "excerpt": "Public content excerpt 3 from @test_private_123 - no PII detected",
+            "source_url": "https://instagram.com/test_private_123/post/3",
+            "timestamp": "2025-12-30T08:39:31.457890",
+            "confidence": 0.851359174748701
+          }
+        ],
+        "profile_metrics": [
+          {
+            "name": "Engagement Rate",
+            "value": "9.60%",
+            "delta": "+0.74%",
+            "stability": 0.8095093454236106
+          },
+          {
+            "name": "Comment Authenticity",
+            "value": "81%",
+            "delta": "-8.5%",
+            "stability": 0.8654380046907503
+          }
+        ]
+      },
+      "scraping_result": {
+        "status": "partial_blocked",
+        "data_completeness": "partial_no_comments",
+        "scraping_errors": [
+          "Login wall detected",
+          "Private profile detected"
+        ],
+        "profile_data": {
+          "handle": "test_private_123",
+          "platform": "instagram",
+          "follower_count": 147,
+          "post_count": 28,
+          "bio": "Private account - limited data available"
+        },
+        "posts_extracted": 7,
+        "comments_blocked": true,
+        "session_metadata": {
+          "browser_version": "Chrome/120.0.0.0",
+          "scraped_at": "2026-01-17T08:39:31.456911",
+          "ip_session": "test_private_123_1768639171",
+          "blocking_mechanisms": [
+            "login_wall",
+            "private_profile"
+          ]
+        }
+      }
+    },
+    {
+      "handle": "deleted_user_test",
+      "platform": "instagram",
+      "test_start": "2026-01-17T10:39:31.459791",
+      "expected": "unavailable",
+      "status": "success",
+      "duration": 0.001049041748046875,
+      "data_completeness": "unavailable",
+      "epistemic_state": "INSUFFICIENT",
+      "verification_results": {
+        "warning_banners": {
+          "expected_warning": "system",
+          "warning_rendered": true,
+          "data_completeness": "unavailable",
+          "status": "verified"
+        },
+        "llm_calibration": {
+          "bounds_compliant": true,
+          "violations": [],
+          "status": "verified"
+        },
+        "pii_safety": {
+          "pii_safe": true,
+          "violations": [],
+          "total_evidence": 0,
+          "status": "verified"
+        },
+        "screenshot_generation": {
+          "filename": "20260117_103931_deleted_user_test_instagram_unavailable_insufficient.png",
+          "timestamp": "2026-01-17T10:39:31.460795",
+          "handle": "deleted_user_test",
+          "platform": "instagram",
+          "data_completeness": "unavailable",
+          "epistemic_status": "INSUFFICIENT",
+          "path": "docs\\audits\\20260117_103931_deleted_user_test_instagram_unavailable_insufficient.png",
+          "watermark_applied": true,
+          "anti_tampering": true
+        }
+      },
+      "report_data": {
+        "handle": "deleted_user_test",
+        "platform": "instagram",
+        "generated_at": "2026-01-17T08:39:31.460525",
+        "data_completeness": "unavailable",
+        "epistemic_state": {
+          "status": "INSUFFICIENT",
+          "data_points_analyzed": 0,
+          "confidence": 0.0
+        },
+        "calibration": {
+          "confidence_recalibration": {
+            "original_confidence": 0.0,
+            "recalibrated_confidence": 0.0
+          }
+        },
+        "true_engagement": {
+          "signal_strength": 0.0,
+          "confidence": 0.0,
+          "base_score": 0,
+          "adjusted_score": 0.0,
+          "adjustment_percentage": 8.4,
+          "history": []
+        },
+        "audience_authenticity": {
+          "signal_strength": 0.0,
+          "confidence": 0.0,
+          "base_score": 0,
+          "adjusted_score": 0.0,
+          "adjustment_percentage": -12.39,
+          "history": []
+        },
+        "brand_safety": {
+          "signal_strength": 0.0,
+          "confidence": 0.0,
+          "base_score": 0,
+          "adjusted_score": 0.0,
+          "adjustment_percentage": 8.24,
+          "history": []
+        },
+        "evidence_vault": [],
+        "profile_metrics": []
+      },
+      "scraping_result": {
+        "status": "failed",
+        "data_completeness": "unavailable",
+        "scraping_errors": [
+          "Profile not found (404)",
+          "Account deleted"
+        ],
+        "session_metadata": {
+          "browser_version": "Chrome/120.0.0.0",
+          "scraped_at": "2026-01-17T08:39:31.460019",
+          "ip_session": "deleted_user_test_1768639171",
+          "blocking_mechanisms": [
+            "profile_not_found"
+          ]
+        }
+      }
+    },
+    {
+      "handle": "nationalgeographic",
+      "platform": "instagram",
+      "test_start": "2026-01-17T10:39:31.461790",
+      "expected": "full_data",
+      "status": "failed",
+      "error": "list index out of range",
+      "duration": 0.0003113746643066406
+    },
+    {
+      "handle": "addisonre",
+      "platform": "tiktok",
+      "test_start": "2026-01-17T10:39:31.462756",
+      "expected": "full_data",
+      "status": "failed",
+      "error": "list index out of range",
+      "duration": 0.0002875328063964844
+    },
+    {
+      "handle": "rate_limited_test",
+      "platform": "instagram",
+      "test_start": "2026-01-17T10:39:31.465484",
+      "expected": "partial_rate_limited",
+      "status": "success",
+      "duration": 0.0014009475708007812,
+      "data_completeness": "partial_no_comments",
+      "epistemic_state": "LIMITED",
+      "verification_results": {
+        "warning_banners": {
+          "expected_warning": "blocked",
+          "warning_rendered": true,
+          "data_completeness": "partial_no_comments",
+          "status": "verified"
+        },
+        "llm_calibration": {
+          "bounds_compliant": true,
+          "violations": [],
+          "status": "verified"
+        },
+        "pii_safety": {
+          "pii_safe": true,
+          "violations": [],
+          "total_evidence": 3,
+          "status": "verified"
+        },
+        "screenshot_generation": {
+          "filename": "20260117_103931_rate_limited_test_instagram_partial_no_comments_limited.png",
+          "timestamp": "2026-01-17T10:39:31.466843",
+          "handle": "rate_limited_test",
+          "platform": "instagram",
+          "data_completeness": "partial_no_comments",
+          "epistemic_status": "LIMITED",
+          "path": "docs\\audits\\20260117_103931_rate_limited_test_instagram_partial_no_comments_limited.png",
+          "watermark_applied": true,
+          "anti_tampering": true
+        }
+      },
+      "report_data": {
+        "handle": "rate_limited_test",
+        "platform": "instagram",
+        "generated_at": "2026-01-17T08:39:31.466592",
+        "data_completeness": "partial_no_comments",
+        "epistemic_state": {
+          "status": "LIMITED",
+          "data_points_analyzed": 328,
+          "confidence": 0.75
+        },
+        "calibration": {
+          "confidence_recalibration": {
+            "original_confidence": 0.75,
+            "recalibrated_confidence": 0.75
+          }
+        },
+        "true_engagement": {
+          "signal_strength": 93.6,
+          "confidence": 0.75,
+          "base_score": 82,
+          "adjusted_score": 93.6,
+          "adjustment_percentage": 14.2,
+          "history": [
+            63,
+            78,
+            72,
+            94,
+            53,
+            73
+          ]
+        },
+        "audience_authenticity": {
+          "signal_strength": 78.2,
+          "confidence": 0.75,
+          "base_score": 84,
+          "adjusted_score": 78.2,
+          "adjustment_percentage": -6.92,
+          "history": [
+            66,
+            52,
+            59,
+            95,
+            98,
+            59
+          ]
+        },
+        "brand_safety": {
+          "signal_strength": 95.0,
+          "confidence": 0.75,
+          "base_score": 87,
+          "adjusted_score": 95.0,
+          "adjustment_percentage": 9.25,
+          "history": [
+            95,
+            62,
+            72,
+            65,
+            54,
+            61
+          ]
+        },
+        "evidence_vault": [
+          {
+            "evidence_id": "evidence_rate_limited_test_0",
+            "type": "authenticity",
+            "excerpt": "Public content excerpt 0 from @rate_limited_test - no PII detected",
+            "source_url": "https://instagram.com/rate_limited_test/post/0",
+            "timestamp": "2025-12-30T08:39:31.466566",
+            "confidence": 0.7303519049441524
+          },
+          {
+            "evidence_id": "evidence_rate_limited_test_1",
+            "type": "engagement",
+            "excerpt": "Public content excerpt 1 from @rate_limited_test - no PII detected",
+            "source_url": "https://instagram.com/rate_limited_test/post/1",
+            "timestamp": "2025-12-30T08:39:31.466584",
+            "confidence": 0.7496888606061756
+          },
+          {
+            "evidence_id": "evidence_rate_limited_test_2",
+            "type": "engagement",
+            "excerpt": "Public content excerpt 2 from @rate_limited_test - no PII detected",
+            "source_url": "https://instagram.com/rate_limited_test/post/2",
+            "timestamp": "2026-01-16T08:39:31.466588",
+            "confidence": 0.7639043006950194
+          }
+        ],
+        "profile_metrics": [
+          {
+            "name": "Engagement Rate",
+            "value": "7.42%",
+            "delta": "+0.93%",
+            "stability": 0.836007890605718
+          },
+          {
+            "name": "Comment Authenticity",
+            "value": "83%",
+            "delta": "-8.2%",
+            "stability": 0.8531838617673969
+          }
+        ]
+      },
+      "scraping_result": {
+        "status": "partial_rate_limited",
+        "data_completeness": "partial_no_comments",
+        "scraping_errors": [
+          "Rate limiting detected",
+          "Comments blocked"
+        ],
+        "profile_data": {
+          "handle": "rate_limited_test",
+          "platform": "instagram",
+          "follower_count": 32879,
+          "post_count": 447,
+          "bio": "Rate limited account"
+        },
+        "posts_extracted": 42,
+        "comments_blocked": true,
+        "session_metadata": {
+          "browser_version": "Chrome/120.0.0.0",
+          "scraped_at": "2026-01-17T08:39:31.465930",
+          "ip_session": "rate_limited_test_1768639171",
+          "blocking_mechanisms": [
+            "rate_limiting"
+          ]
+        }
+      }
+    },
+    {
+      "handle": "archival_data_test",
+      "platform": "instagram",
+      "test_start": "2026-01-17T10:39:31.467866",
+      "expected": "archival",
+      "status": "success",
+      "duration": 0.0013880729675292969,
+      "data_completeness": "archival",
+      "epistemic_state": "ROBUST",
+      "verification_results": {
+        "warning_banners": {
+          "expected_warning": "system",
+          "warning_rendered": true,
+          "data_completeness": "archival",
+          "status": "verified"
+        },
+        "llm_calibration": {
+          "bounds_compliant": true,
+          "violations": [],
+          "status": "verified"
+        },
+        "pii_safety": {
+          "pii_safe": true,
+          "violations": [],
+          "total_evidence": 7,
+          "status": "verified"
+        },
+        "screenshot_generation": {
+          "filename": "20260117_103931_archival_data_test_instagram_archival_robust.png",
+          "timestamp": "2026-01-17T10:39:31.469221",
+          "handle": "archival_data_test",
+          "platform": "instagram",
+          "data_completeness": "archival",
+          "epistemic_status": "ROBUST",
+          "path": "docs\\audits\\20260117_103931_archival_data_test_instagram_archival_robust.png",
+          "watermark_applied": true,
+          "anti_tampering": true
+        }
+      },
+      "report_data": {
+        "handle": "archival_data_test",
+        "platform": "instagram",
+        "generated_at": "2026-01-17T08:39:31.468903",
+        "data_completeness": "archival",
+        "epistemic_state": {
+          "status": "ROBUST",
+          "data_points_analyzed": 328,
+          "confidence": 0.85
+        },
+        "calibration": {
+          "confidence_recalibration": {
+            "original_confidence": 0.85,
+            "recalibrated_confidence": 0.85
+          }
+        },
+        "true_engagement": {
+          "signal_strength": 73.1,
+          "confidence": 0.85,
+          "base_score": 65,
+          "adjusted_score": 73.1,
+          "adjustment_percentage": 12.48,
+          "history": [
+            50,
+            58,
+            51,
+            94,
+            73,
+            97
+          ]
+        },
+        "audience_authenticity": {
+          "signal_strength": 85.9,
+          "confidence": 0.85,
+          "base_score": 75,
+          "adjusted_score": 85.9,
+          "adjustment_percentage": 14.51,
+          "history": [
+            52,
+            85,
+            55,
+            77,
+            91,
+            56
+          ]
+        },
+        "brand_safety": {
+          "signal_strength": 72.2,
+          "confidence": 0.85,
+          "base_score": 66,
+          "adjusted_score": 72.2,
+          "adjustment_percentage": 9.32,
+          "history": [
+            90,
+            86,
+            85,
+            89,
+            79,
+            93
+          ]
+        },
+        "evidence_vault": [
+          {
+            "evidence_id": "evidence_archival_data_test_0",
+            "type": "brand_safety",
+            "excerpt": "Public content excerpt 0 from @archival_data_test - no PII detected",
+            "source_url": "https://instagram.com/archival_data_test/post/0",
+            "timestamp": "2026-01-14T08:39:31.468850",
+            "confidence": 0.7440956329105841
+          },
+          {
+            "evidence_id": "evidence_archival_data_test_1",
+            "type": "brand_safety",
+            "excerpt": "Public content excerpt 1 from @archival_data_test - no PII detected",
+            "source_url": "https://instagram.com/archival_data_test/post/1",
+            "timestamp": "2025-12-22T08:39:31.468865",
+            "confidence": 0.9115216571603515
+          },
+          {
+            "evidence_id": "evidence_archival_data_test_2",
+            "type": "brand_safety",
+            "excerpt": "Public content excerpt 2 from @archival_data_test - no PII detected",
+            "source_url": "https://instagram.com/archival_data_test/post/2",
+            "timestamp": "2025-12-28T08:39:31.468871",
+            "confidence": 0.9277160356282805
+          },
+          {
+            "evidence_id": "evidence_archival_data_test_3",
+            "type": "brand_safety",
+            "excerpt": "Public content excerpt 3 from @archival_data_test - no PII detected",
+            "source_url": "https://instagram.com/archival_data_test/post/3",
+            "timestamp": "2026-01-04T08:39:31.468877",
+            "confidence": 0.7599953839800057
+          },
+          {
+            "evidence_id": "evidence_archival_data_test_4",
+            "type": "authenticity",
+            "excerpt": "Public content excerpt 4 from @archival_data_test - no PII detected",
+            "source_url": "https://instagram.com/archival_data_test/post/4",
+            "timestamp": "2026-01-02T08:39:31.468885",
+            "confidence": 0.797914705561415
+          },
+          {
+            "evidence_id": "evidence_archival_data_test_5",
+            "type": "brand_safety",
+            "excerpt": "Public content excerpt 5 from @archival_data_test - no PII detected",
+            "source_url": "https://instagram.com/archival_data_test/post/5",
+            "timestamp": "2025-12-23T08:39:31.468891",
+            "confidence": 0.761098115163702
+          },
+          {
+            "evidence_id": "evidence_archival_data_test_6",
+            "type": "brand_safety",
+            "excerpt": "Public content excerpt 6 from @archival_data_test - no PII detected",
+            "source_url": "https://instagram.com/archival_data_test/post/6",
+            "timestamp": "2026-01-16T08:39:31.468896",
+            "confidence": 0.8782662905631237
+          }
+        ],
+        "profile_metrics": [
+          {
+            "name": "Engagement Rate",
+            "value": "4.49%",
+            "delta": "+1.10%",
+            "stability": 0.9239211861427783
+          },
+          {
+            "name": "Comment Authenticity",
+            "value": "81%",
+            "delta": "-2.1%",
+            "stability": 0.9113852585388703
+          }
+        ]
+      },
+      "scraping_result": {
+        "status": "archival_fallback",
+        "data_completeness": "archival",
+        "scraping_errors": [
+          "Live data unavailable",
+          "Using archival data"
+        ],
+        "profile_data": {
+          "handle": "archival_data_test",
+          "platform": "instagram",
+          "follower_count": 9617,
+          "post_count": 167,
+          "bio": "Archival data source"
+        },
+        "posts_extracted": 24,
+        "comments_blocked": false,
+        "session_metadata": {
+          "browser_version": "Chrome/120.0.0.0",
+          "scraped_at": "2026-01-17T08:39:31.468170",
+          "ip_session": "archival_data_test_1768639171",
+          "blocking_mechanisms": [
+            "live_data_unavailable"
+          ]
+        }
+      }
+    }
+  ],
+  "readiness_statement": "LAUNCH READINESS ASSESSMENT\nGenerated: 2026-01-17T10:39:31.470044\nTested Handles: 8 across Instagram and TikTok\nSuccess Rate: 4/8 (50.0%)\n\nDATA COMPLETENESS DISTRIBUTION:\n{\n  \"partial_no_comments\": 2,\n  \"unavailable\": 1,\n  \"archival\": 1\n}\n\nEPISTEMIC STATE SUMMARY:\n{\n  \"LIMITED\": 2,\n  \"INSUFFICIENT\": 1,\n  \"ROBUST\": 1\n}\n\nLLM CALIBRATION VERIFICATION:\n- Adjustments within \u00b115% bounds: 4/8\n- Confidence recalibration applied: 4/8\n\nPII PROTECTION STATUS:\n- Reports sharing safely: 4/8\n- Screenshot audit metadata generated: 8 reports\n\nRECOMMENDATION: NO-GO for production deployment",
+  "screenshot_count": 4,
+  "failure_count": 4,
+  "governance_count": 5
+}

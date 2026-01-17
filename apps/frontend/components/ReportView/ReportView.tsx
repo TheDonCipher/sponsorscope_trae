@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useReport } from '../../hooks/useReport';
+import { useAnalysisJob } from '../../hooks/useAnalysisJob';
+import { AnalysisProgress } from '../AnalysisProgress/AnalysisProgress';
 import { ConfidenceMeter } from '../Viz/ConfidenceMeter';
 import { UncertaintyBand } from '../Viz/UncertaintyBand';
 import { SignalStrengthBar } from '../Viz/SignalStrengthBar';
@@ -13,56 +14,39 @@ interface ReportViewProps {
 }
 
 export const ReportView: React.FC<ReportViewProps> = ({ handle }) => {
-  const { report, loading, error } = useReport(handle);
-  const [loadingStep, setLoadingStep] = useState(0);
-  
-  const loadingSteps = [
-    "INITIALIZING SIGNAL ANALYSIS...",
-    "CONNECTING TO DATA SOURCE...",
-    "EXTRACTING ENGAGEMENT SIGNALS...",
-    "ANALYZING AUDIENCE PATTERNS...",
-    "EVALUATING SAFETY SIGNALS...",
-    "COMPILING FINDINGS..."
-  ];
+  const { job, report, loading, error, startAnalysis } = useAnalysisJob();
 
+  // Start analysis when component mounts
   useEffect(() => {
-    if (loading) {
-      const interval = setInterval(() => {
-        setLoadingStep((prev) => (prev + 1) % loadingSteps.length);
-      }, 800); // Change text every 800ms
-      return () => clearInterval(interval);
-    } else {
-      setLoadingStep(0);
+    if (handle) {
+      startAnalysis(handle);
     }
-  }, [loading]);
+  }, [handle, startAnalysis]);
 
-  if (loading) return (
-    <div className="flex items-center justify-center min-h-screen bg-background-dark text-white">
-      <div className="flex flex-col items-center gap-6">
-        <div className="relative">
-            <div className="w-16 h-16 border-4 border-primary/20 border-t-primary rounded-full animate-spin"></div>
-            <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-8 h-8 bg-primary/10 rounded-full animate-pulse"></div>
-            </div>
-        </div>
-        <div className="text-center">
-            <p className="animate-pulse font-mono text-primary font-bold tracking-widest text-sm mb-2">{loadingSteps[loadingStep]}</p>
-            <p className="text-xs text-white/40 font-mono">ANALYSIS SUBJECT: @{handle}</p>
-            <p className="text-xs text-yellow-500/80 mt-4 font-bold uppercase tracking-wider">Analysis may take up to 2 minutes</p>
-        </div>
-        
-        {/* Terminal-like log output */}
-        <div className="w-64 h-24 bg-black/50 rounded-lg border border-white/10 p-3 overflow-hidden mt-4">
-            <div className="space-y-1 font-mono text-[10px] text-green-500/80">
-                <p>&gt; sys.init_sequence(subject="{handle}")</p>
-                <p className="opacity-80">&gt; verifying_integrity... OK</p>
-                <p className="opacity-60">&gt; establishing_uplink... OK</p>
-                <p className="opacity-40 animate-pulse">&gt; streaming_data...</p>
-            </div>
+  if (loading && job) {
+    return <AnalysisProgress phase={job.phase} progress={job.progress} handle={handle} />;
+  }
+
+  if (loading) {
+    // Fallback for initial loading state
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-background-dark text-white">
+        <div className="flex flex-col items-center gap-6">
+          <div className="relative">
+              <div className="w-16 h-16 border-4 border-primary/20 border-t-primary rounded-full animate-spin"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-8 h-8 bg-primary/10 rounded-full animate-pulse"></div>
+              </div>
+          </div>
+          <div className="text-center">
+              <p className="animate-pulse font-mono text-primary font-bold tracking-widest text-sm mb-2">INITIALIZING ANALYSIS...</p>
+              <p className="text-xs text-white/40 font-mono">ANALYSIS SUBJECT: @{handle}</p>
+              <p className="text-xs text-yellow-500/80 mt-4 font-bold uppercase tracking-wider">Analysis may take up to 2 minutes</p>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
   
   if (error) return (
     <div className="flex items-center justify-center min-h-screen bg-background-dark text-white">

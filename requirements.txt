@@ -6,4 +6,8 @@ playwright
 asyncio
 aiofiles
 python-dateutil
+uuid
+aiohttp
+google-cloud-aiplatform>=1.38.0
+vertexai>=1.38.0
 # Add other dependencies used in the project

@@ -1,0 +1,4 @@
+{"timestamp": "2026-01-17T10:39:31.452925", "handle": "nike", "platform": "instagram", "error": "list index out of range", "phase": "test_execution", "test_type": "e2e_live_data"}
+{"timestamp": "2026-01-17T10:39:31.455511", "handle": "charlidamelio", "platform": "tiktok", "error": "list index out of range", "phase": "test_execution", "test_type": "e2e_live_data"}
+{"timestamp": "2026-01-17T10:39:31.462103", "handle": "nationalgeographic", "platform": "instagram", "error": "list index out of range", "phase": "test_execution", "test_type": "e2e_live_data"}
+{"timestamp": "2026-01-17T10:39:31.463049", "handle": "addisonre", "platform": "tiktok", "error": "list index out of range", "phase": "test_execution", "test_type": "e2e_live_data"}

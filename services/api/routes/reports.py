@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends, Request
 from services.api.models.report import ReportResponse
 from services.api.assembler import ReportAssembler
-from services.governance.core.killswitch import KillSwitch
+from services.governance.core.enhanced_killswitch import enhanced_killswitch
 from services.governance.core.proxy import GovernanceProxy
 from services.scraper.adapters.instagram import InstagramScraper
 from services.analyzer.heuristics.engagement import compute_true_engagement
@@ -29,12 +29,12 @@ async def get_report(handle: str):
     Get or trigger a report for a specific handle.
     """
     # 0. Kill Switch Check (Read)
-    if not KillSwitch.is_read_enabled():
-        raise HTTPException(status_code=503, detail=KillSwitch.get_maintenance_message())
+    if not await enhanced_killswitch.is_read_enabled():
+        raise HTTPException(status_code=503, detail=enhanced_killswitch.get_maintenance_message())
 
     # 0. Kill Switch Check (Scan)
-    if not KillSwitch.is_scan_enabled():
-        raise HTTPException(status_code=503, detail=KillSwitch.get_maintenance_message())
+    if not await enhanced_killswitch.is_scan_enabled():
+        raise HTTPException(status_code=503, detail=enhanced_killswitch.get_maintenance_message())
 
     # 1. Initialize Scraper (Default to Instagram for MVP)
     # TODO: Detect platform from handle or add query param
@@ -83,7 +83,13 @@ async def get_report(handle: str):
         raw_evidence=[]
     )
     gp.end_session(session, success=scan_result.data_completeness != DataCompleteness.FAILED, failure_reason=";".join(scan_result.errors) if scan_result.errors else None)
-    report.warning_banners = report.warning_banners + gp.compute_banners(scan_result, session)
+    
+    # Add governance banners
+    governance_banners = gp.compute_banners(scan_result, session)
+    system_notices = await enhanced_killswitch.get_system_notices()
+    
+    # Combine all banners
+    report.warning_banners = report.warning_banners + governance_banners + system_notices
     
     return report
 
