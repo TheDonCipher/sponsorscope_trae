@@ -2,10 +2,11 @@ from fastapi import APIRouter, HTTPException, Depends, Request
 from services.api.models.report import ReportResponse
 from services.api.assembler import ReportAssembler
 from services.governance.core.killswitch import KillSwitch
+from services.governance.core.proxy import GovernanceProxy
 from services.scraper.adapters.instagram import InstagramScraper
 from services.analyzer.heuristics.engagement import compute_true_engagement
 from services.analyzer.heuristics.authenticity import compute_audience_authenticity
-from shared.schemas.domain import DataCompleteness
+from shared.schemas.domain import DataCompleteness, Platform
 from services.governance.core.engine import GovernanceEngine
 from services.governance.models.request import IssueType
 from pydantic import BaseModel
@@ -31,12 +32,23 @@ async def get_report(handle: str):
     if not KillSwitch.is_read_enabled():
         raise HTTPException(status_code=503, detail=KillSwitch.get_maintenance_message())
 
+    # 0. Kill Switch Check (Scan)
+    if not KillSwitch.is_scan_enabled():
+        raise HTTPException(status_code=503, detail=KillSwitch.get_maintenance_message())
+
     # 1. Initialize Scraper (Default to Instagram for MVP)
     # TODO: Detect platform from handle or add query param
     scraper = InstagramScraper()
+    gp = GovernanceProxy()
+    platform = "instagram"
+    session = gp.start_session(handle, Platform.INSTAGRAM)  # type: ignore
+    if not gp.can_start(Platform.INSTAGRAM):
+        gp.end_session(session, success=False, failure_reason="budget_exhausted")
+        raise HTTPException(status_code=429, detail="Scan budget reached for platform")
     
     # 2. Run Scan
     # This fetches "mock" data from the adapter, but using the real interface structure
+    await gp.pacer.await_pacing(handle, 0)
     scan_result = await scraper.run_scan(handle)
     
     if scan_result.data_completeness == DataCompleteness.UNAVAILABLE:
@@ -62,7 +74,7 @@ async def get_report(handle: str):
     # 4. Assemble Report
     report = ReportAssembler.assemble(
         handle=handle,
-        platform="instagram",
+        platform=platform,
         heuristic_results={
             "engagement": engagement_result,
             "authenticity": authenticity_result
@@ -70,6 +82,8 @@ async def get_report(handle: str):
         llm_results={}, # No LLM integration yet
         raw_evidence=[]
     )
+    gp.end_session(session, success=scan_result.data_completeness != DataCompleteness.FAILED, failure_reason=";".join(scan_result.errors) if scan_result.errors else None)
+    report.warning_banners = report.warning_banners + gp.compute_banners(scan_result, session)
     
     return report
 

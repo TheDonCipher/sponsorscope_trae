@@ -3,27 +3,14 @@
 import { useState } from 'react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
+import SearchDialog from '../components/SearchFlow/SearchDialog';
+import SearchHistory from '../components/SearchFlow/SearchHistory';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  const [searchHandle, setSearchHandle] = useState('');
+  const [isSearchDialogOpen, setIsSearchDialogOpen] = useState(false);
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const router = useRouter();
-
-  const handleSearch = () => {
-    if (searchHandle) {
-      // Basic validation: remove @ if present
-      const cleanHandle = searchHandle.replace('@', '').trim();
-      if (cleanHandle) {
-        router.push(`/report/${cleanHandle}`);
-      }
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
-  };
 
   return (
     <main className="flex flex-col min-h-screen bg-background-light dark:bg-background-dark text-[#101816] dark:text-white font-display overflow-x-hidden antialiased">
@@ -42,38 +29,66 @@ export default function Home() {
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#101816] dark:text-white mb-6 leading-[1.1]">
             The operating system for <br className="hidden sm:block"/>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-emerald-600 dark:to-emerald-400">influencer vetting.</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-emerald-600 dark:to-emerald-400">creator observation.</span>
           </h1>
           <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mb-10 leading-relaxed">
-            Real-time analysis on engagement, authenticity, and brand safety. 
+            Real-time observational analysis on engagement patterns, authenticity signals, and brand safety indicators. 
             Institutional-grade data for modern marketing teams.
           </p>
 
-          {/* Search Component */}
-          <div className="w-full max-w-[560px] relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary to-emerald-400 rounded-xl opacity-20 group-hover:opacity-40 blur transition duration-200"></div>
-            <div className="relative flex items-center w-full h-14 sm:h-16 bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-xl overflow-hidden">
-              <div className="pl-5 text-slate-400 dark:text-slate-500">
-                <span className="material-symbols-outlined">search</span>
+          {/* Search Component - Updated for petition-style flow */}
+          <div className="w-full max-w-[560px]">
+            <button
+              onClick={() => setIsSearchDialogOpen(true)}
+              className="w-full group relative"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-xl opacity-20 group-hover:opacity-40 blur transition duration-200"></div>
+              <div className="relative flex items-center w-full h-14 sm:h-16 bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-xl overflow-hidden">
+                <div className="pl-5 text-slate-400 dark:text-slate-500">
+                  <span className="material-symbols-outlined">search</span>
+                </div>
+                <div className="flex-1 text-left px-4">
+                  <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400">
+                    Enter a public creator handle to analyze probabilistically
+                  </p>
+                </div>
+                <div className="pr-2">
+                  <div className="h-10 sm:h-12 px-6 rounded-lg bg-emerald-500 text-[#101816] font-bold text-sm flex items-center justify-center">
+                    Submit Analysis Request
+                  </div>
+                </div>
               </div>
-              <input 
-                className="w-full h-full bg-transparent border-none focus:ring-0 text-[#101816] dark:text-white placeholder-slate-400 text-base sm:text-lg px-4 focus:outline-none" 
-                placeholder="e.g., @mkbhd, @charli_damilio..." 
-                type="text"
-                value={searchHandle}
-                onChange={(e) => setSearchHandle(e.target.value)}
-                onKeyDown={handleKeyDown}
-              />
-              <div className="pr-2">
-                <button 
-                  onClick={handleSearch}
-                  className="h-10 sm:h-12 px-6 rounded-lg bg-primary hover:bg-emerald-400 text-[#101816] font-bold text-sm transition-colors"
-                >
-                  Analyze
-                </button>
-              </div>
+            </button>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 text-center">
+              Private accounts, blocked comments, or new profiles may reduce confidence.
+            </p>
+            
+            {/* Search History Link */}
+            <div className="text-center mt-3">
+              <button
+                onClick={() => setIsHistoryOpen(true)}
+                className="text-sm text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+              >
+                View recent observation requests →
+              </button>
             </div>
           </div>
+
+          {/* Search Dialog */}
+          <SearchDialog 
+            isOpen={isSearchDialogOpen} 
+            onClose={() => setIsSearchDialogOpen(false)} 
+          />
+
+          {/* Search History */}
+          <SearchHistory
+            isVisible={isHistoryOpen}
+            onClose={() => setIsHistoryOpen(false)}
+            onSelectItem={(handle) => {
+              setIsHistoryOpen(false);
+              router.push(`/report/${handle.replace('@', '')}`);
+            }}
+          />
 
           {/* Chips */}
           <div className="flex flex-wrap justify-center gap-3 mt-8">
@@ -216,9 +231,9 @@ export default function Home() {
       <section className="py-24 bg-surface-light dark:bg-surface-dark border-t border-border-light dark:border-border-dark">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-[#101816] dark:text-white mb-4">Deep Tech Methodology</h2>
+            <h2 className="text-3xl font-bold text-[#101816] dark:text-white mb-4">Observational Methodology</h2>
             <p className="text-slate-600 dark:text-slate-400">
-              Our analysis pipeline combines graph theory, heuristic scoring, and large language models to provide a holistic view of influencer credibility.
+              Our observational pipeline combines graph theory, heuristic scoring, and large language models to provide a probabilistic view of creator credibility.
             </p>
           </div>
 
@@ -229,7 +244,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-[#101816] dark:text-white mb-2">Graph Analysis</h3>
               <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                We map connection reciprocity and reuse patterns to identify artificial engagement networks and pod activity.
+                We map connection reciprocity and reuse patterns to observe potential engagement networks and coordination signals.
               </p>
             </div>
 
@@ -239,7 +254,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-[#101816] dark:text-white mb-2">LLM Refinement</h3>
               <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                Contextual understanding of content safety using advanced LLMs to detect hate speech, political bias, and brand risks.
+                Contextual understanding of content patterns using advanced LLMs to observe potential safety signals and brand considerations.
               </p>
             </div>
 

@@ -2,4 +2,8 @@ fastapi
 uvicorn
 pydantic
 requests
+playwright
+asyncio
+aiofiles
+python-dateutil
 # Add other dependencies used in the project
