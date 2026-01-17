@@ -146,21 +146,30 @@ class TikTokPlaywrightScraper(BaseScraper):
                 if user_info_elements:
                     # Extract follower count
                     follower_elements = await self.page.query_selector_all('[data-e2e="followers-count"]')
-                    if follower_elements:
-                        follower_text = await follower_elements[0].inner_text()
-                        profile_data['follower_count'] = self._parse_count(follower_text)
+                    if follower_elements and len(follower_elements) > 0:
+                        try:
+                            follower_text = await follower_elements[0].inner_text()
+                            profile_data['follower_count'] = self._parse_count(follower_text)
+                        except Exception as e:
+                            logger.debug(f"Failed to extract follower count: {e}")
                     
                     # Extract following count
                     following_elements = await self.page.query_selector_all('[data-e2e="following-count"]')
-                    if following_elements:
-                        following_text = await following_elements[0].inner_text()
-                        profile_data['following_count'] = self._parse_count(following_text)
+                    if following_elements and len(following_elements) > 0:
+                        try:
+                            following_text = await following_elements[0].inner_text()
+                            profile_data['following_count'] = self._parse_count(following_text)
+                        except Exception as e:
+                            logger.debug(f"Failed to extract following count: {e}")
                     
                     # Extract likes count (TikTok equivalent of post count)
                     likes_elements = await self.page.query_selector_all('[data-e2e="likes-count"]')
-                    if likes_elements:
-                        likes_text = await likes_elements[0].inner_text()
-                        profile_data['like_count'] = self._parse_count(likes_text)
+                    if likes_elements and len(likes_elements) > 0:
+                        try:
+                            likes_text = await likes_elements[0].inner_text()
+                            profile_data['like_count'] = self._parse_count(likes_text)
+                        except Exception as e:
+                            logger.debug(f"Failed to extract likes count: {e}")
                         
             except Exception as e:
                 logger.debug(f"User-info extraction failed: {e}")
@@ -368,11 +377,16 @@ class TikTokPlaywrightScraper(BaseScraper):
                     # Extract comment text
                     text_elements = await comment_element.query_selector_all('[data-e2e="comment-text"], span[class*="text"], div[class*="text"]')
                     comment_text = ""
-                    for text_element in text_elements:
-                        text = await text_element.inner_text()
-                        if text and len(text) > 2:  # Filter out very short text
-                            comment_text = text
-                            break
+                    if text_elements and len(text_elements) > 0:
+                        for text_element in text_elements:
+                            try:
+                                text = await text_element.inner_text()
+                                if text and len(text) > 2:  # Filter out very short text
+                                    comment_text = text
+                                    break
+                            except Exception as e:
+                                logger.debug(f"Failed to extract comment text: {e}")
+                                continue
                             
                     if not comment_text:
                         continue
@@ -380,14 +394,17 @@ class TikTokPlaywrightScraper(BaseScraper):
                     # Extract author
                     author_elements = await comment_element.query_selector_all('[data-e2e="comment-username"], a[href*="/@"], h3, h4')
                     author_id = "unknown"
-                    if author_elements:
-                        author_href = await author_elements[0].get_attribute('href')
-                        if author_href:
-                            # Extract username from TikTok URL format
-                            author_id = author_href.strip('/@').split('/')[0] if '/@' in author_href else f"user_{i}"
-                        else:
-                            author_text = await author_elements[0].inner_text()
-                            author_id = author_text.strip('@').split()[0]
+                    if author_elements and len(author_elements) > 0:
+                        try:
+                            author_href = await author_elements[0].get_attribute('href')
+                            if author_href:
+                                # Extract username from TikTok URL format
+                                author_id = author_href.strip('/@').split('/')[0] if '/@' in author_href else f"user_{i}"
+                            else:
+                                author_text = await author_elements[0].inner_text()
+                                author_id = author_text.strip('@').split()[0]
+                        except Exception as e:
+                            logger.debug(f"Failed to extract author: {e}")
                             
                     # Create RawComment
                     comments.append(RawComment(

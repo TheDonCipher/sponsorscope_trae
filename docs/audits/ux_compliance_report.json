@@ -1,0 +1,215 @@
+{
+  "report_metadata": {
+    "generated_at": "2026-01-17T16:36:52.128288",
+    "test_framework_version": "1.0.0",
+    "total_tests": 6,
+    "passed_tests": 0,
+    "failed_tests": 6,
+    "success_rate": "0.0%"
+  },
+  "compliance_summary": {
+    "watermark_persistence": false,
+    "warning_display": true,
+    "metadata_standards": true,
+    "probabilistic_framing": false
+  },
+  "failure_analysis": {
+    "metadata": [],
+    "watermark": [
+      "Missing watermark element: SponsorScope.ai",
+      "Missing watermark element: 2026-01-17",
+      "Missing watermark element: v2.4",
+      "Missing watermark element: ESTIMATED",
+      "Missing watermark element: CONFIDENCE INTERVAL",
+      "Missing watermark element: SponsorScope.ai",
+      "Missing watermark element: 2026-01-17",
+      "Missing watermark element: v2.4",
+      "Missing watermark element: ESTIMATED",
+      "Missing watermark element: CONFIDENCE INTERVAL",
+      "Missing watermark element: SponsorScope.ai",
+      "Missing watermark element: 2026-01-17",
+      "Missing watermark element: v2.4",
+      "Missing watermark element: ESTIMATED",
+      "Missing watermark element: CONFIDENCE INTERVAL",
+      "Missing watermark element: SponsorScope.ai",
+      "Missing watermark element: 2026-01-17",
+      "Missing watermark element: v2.4",
+      "Missing watermark element: ESTIMATED",
+      "Missing watermark element: CONFIDENCE INTERVAL",
+      "Missing watermark element: SponsorScope.ai",
+      "Missing watermark element: 2026-01-17",
+      "Missing watermark element: v2.4",
+      "Missing watermark element: ESTIMATED",
+      "Missing watermark element: CONFIDENCE INTERVAL",
+      "Missing watermark element: SponsorScope.ai",
+      "Missing watermark element: 2026-01-17",
+      "Missing watermark element: v2.4",
+      "Missing watermark element: ESTIMATED",
+      "Missing watermark element: CONFIDENCE INTERVAL"
+    ],
+    "warning": [],
+    "framing": [
+      "Missing probabilistic framing: Estimated",
+      "Missing probabilistic framing: Confidence Interval",
+      "Missing probabilistic framing: Signal Strength",
+      "Missing probabilistic framing: Uncertainty",
+      "Missing probabilistic framing: \u00b1",
+      "Missing probabilistic framing: Range",
+      "Missing probabilistic framing: Estimated",
+      "Missing probabilistic framing: Confidence Interval",
+      "Missing probabilistic framing: Signal Strength",
+      "Missing probabilistic framing: Uncertainty",
+      "Missing probabilistic framing: \u00b1",
+      "Missing probabilistic framing: Range",
+      "Missing probabilistic framing: Estimated",
+      "Missing probabilistic framing: Confidence Interval",
+      "Missing probabilistic framing: Signal Strength",
+      "Missing probabilistic framing: Uncertainty",
+      "Missing probabilistic framing: \u00b1",
+      "Missing probabilistic framing: Range",
+      "Missing probabilistic framing: Estimated",
+      "Missing probabilistic framing: Confidence Interval",
+      "Missing probabilistic framing: Signal Strength",
+      "Missing probabilistic framing: Uncertainty",
+      "Missing probabilistic framing: \u00b1",
+      "Missing probabilistic framing: Range",
+      "Missing probabilistic framing: Estimated",
+      "Missing probabilistic framing: Confidence Interval",
+      "Missing probabilistic framing: Signal Strength",
+      "Missing probabilistic framing: Uncertainty",
+      "Missing probabilistic framing: \u00b1",
+      "Missing probabilistic framing: Range",
+      "Missing probabilistic framing: Estimated",
+      "Missing probabilistic framing: Confidence Interval",
+      "Missing probabilistic framing: Signal Strength",
+      "Missing probabilistic framing: Uncertainty",
+      "Missing probabilistic framing: \u00b1",
+      "Missing probabilistic framing: Range"
+    ]
+  },
+  "detailed_results": [
+    {
+      "test_id": "ux_001_private_instagram",
+      "passed": false,
+      "failures": [
+        "Missing watermark element: SponsorScope.ai",
+        "Missing watermark element: 2026-01-17",
+        "Missing watermark element: v2.4",
+        "Missing watermark element: ESTIMATED",
+        "Missing watermark element: CONFIDENCE INTERVAL",
+        "Missing probabilistic framing: Estimated",
+        "Missing probabilistic framing: Confidence Interval",
+        "Missing probabilistic framing: Signal Strength",
+        "Missing probabilistic framing: Uncertainty",
+        "Missing probabilistic framing: \u00b1",
+        "Missing probabilistic framing: Range"
+      ],
+      "warnings": [],
+      "screenshot_path": "docs\\audits\\20260117_163652_test_private_123_instagram_partial_no_comments_limited.png"
+    },
+    {
+      "test_id": "ux_002_deleted_account",
+      "passed": false,
+      "failures": [
+        "Missing watermark element: SponsorScope.ai",
+        "Missing watermark element: 2026-01-17",
+        "Missing watermark element: v2.4",
+        "Missing watermark element: ESTIMATED",
+        "Missing watermark element: CONFIDENCE INTERVAL",
+        "Missing probabilistic framing: Estimated",
+        "Missing probabilistic framing: Confidence Interval",
+        "Missing probabilistic framing: Signal Strength",
+        "Missing probabilistic framing: Uncertainty",
+        "Missing probabilistic framing: \u00b1",
+        "Missing probabilistic framing: Range"
+      ],
+      "warnings": [
+        "Low evidence count may affect confidence",
+        "Insufficient data state requires careful user communication"
+      ],
+      "screenshot_path": "docs\\audits\\20260117_163652_deleted_user_test_instagram_unavailable_insufficient.png"
+    },
+    {
+      "test_id": "ux_003_rate_limited",
+      "passed": false,
+      "failures": [
+        "Missing watermark element: SponsorScope.ai",
+        "Missing watermark element: 2026-01-17",
+        "Missing watermark element: v2.4",
+        "Missing watermark element: ESTIMATED",
+        "Missing watermark element: CONFIDENCE INTERVAL",
+        "Missing probabilistic framing: Estimated",
+        "Missing probabilistic framing: Confidence Interval",
+        "Missing probabilistic framing: Signal Strength",
+        "Missing probabilistic framing: Uncertainty",
+        "Missing probabilistic framing: \u00b1",
+        "Missing probabilistic framing: Range"
+      ],
+      "warnings": [],
+      "screenshot_path": "docs\\audits\\20260117_163652_rate_limited_test_instagram_partial_no_comments_limited.png"
+    },
+    {
+      "test_id": "ux_004_archival_data",
+      "passed": false,
+      "failures": [
+        "Missing watermark element: SponsorScope.ai",
+        "Missing watermark element: 2026-01-17",
+        "Missing watermark element: v2.4",
+        "Missing watermark element: ESTIMATED",
+        "Missing watermark element: CONFIDENCE INTERVAL",
+        "Missing probabilistic framing: Estimated",
+        "Missing probabilistic framing: Confidence Interval",
+        "Missing probabilistic framing: Signal Strength",
+        "Missing probabilistic framing: Uncertainty",
+        "Missing probabilistic framing: \u00b1",
+        "Missing probabilistic framing: Range"
+      ],
+      "warnings": [],
+      "screenshot_path": "docs\\audits\\20260117_163652_archival_data_test_instagram_archival_robust.png"
+    },
+    {
+      "test_id": "ux_005_sparse_data",
+      "passed": false,
+      "failures": [
+        "Missing watermark element: SponsorScope.ai",
+        "Missing watermark element: 2026-01-17",
+        "Missing watermark element: v2.4",
+        "Missing watermark element: ESTIMATED",
+        "Missing watermark element: CONFIDENCE INTERVAL",
+        "Missing probabilistic framing: Estimated",
+        "Missing probabilistic framing: Confidence Interval",
+        "Missing probabilistic framing: Signal Strength",
+        "Missing probabilistic framing: Uncertainty",
+        "Missing probabilistic framing: \u00b1",
+        "Missing probabilistic framing: Range"
+      ],
+      "warnings": [
+        "Low evidence count may affect confidence"
+      ],
+      "screenshot_path": "docs\\audits\\20260117_163652_sparse_data_test_tiktok_sparse_limited.png"
+    },
+    {
+      "test_id": "ux_006_comments_disabled",
+      "passed": false,
+      "failures": [
+        "Missing watermark element: SponsorScope.ai",
+        "Missing watermark element: 2026-01-17",
+        "Missing watermark element: v2.4",
+        "Missing watermark element: ESTIMATED",
+        "Missing watermark element: CONFIDENCE INTERVAL",
+        "Missing probabilistic framing: Estimated",
+        "Missing probabilistic framing: Confidence Interval",
+        "Missing probabilistic framing: Signal Strength",
+        "Missing probabilistic framing: Uncertainty",
+        "Missing probabilistic framing: \u00b1",
+        "Missing probabilistic framing: Range"
+      ],
+      "warnings": [],
+      "screenshot_path": "docs\\audits\\20260117_163652_comments_disabled_test_instagram_partial_no_comments_limited.png"
+    }
+  ],
+  "recommendations": [
+    "Implement stronger watermarking with OCR-resistant techniques",
+    "Enhance probabilistic language visibility in cropped screenshots"
+  ]
+}

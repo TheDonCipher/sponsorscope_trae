@@ -1,0 +1,205 @@
+{
+  "export_metadata": {
+    "generated_at": "2026-01-17T15:07:57.998557",
+    "dashboard_version": "1.0.0",
+    "total_records": 5,
+    "export_period_days": 30
+  },
+  "dashboard_summary": {
+    "timestamp": "2026-01-17T15:07:57.998541",
+    "summary": {
+      "total_audits": 5,
+      "total_violations": 7,
+      "violation_rate": 1.4,
+      "active_alerts": 2,
+      "last_update": "2026-01-17T15:07:42.931785"
+    },
+    "trend_analysis": {
+      "hourly": {
+        "violation_rate": 1.4,
+        "trend_direction": "increasing",
+        "anomaly_score": 55.0,
+        "risk_assessment": "medium"
+      },
+      "daily": {
+        "violation_rate": 1.4,
+        "trend_direction": "increasing",
+        "anomaly_score": 55.0,
+        "risk_assessment": "medium"
+      },
+      "weekly": {
+        "violation_rate": 1.4,
+        "trend_direction": "increasing",
+        "anomaly_score": 55.0,
+        "risk_assessment": "medium"
+      }
+    },
+    "platform_reliability": {
+      "Instagram": {
+        "total_audits": 3,
+        "violation_rate": 0.33333333333333337,
+        "reliability_score": 0.0031072245370370372,
+        "common_violations": [
+          "sarcastic_content_unhandled",
+          "cultural_slang_misinterpreted",
+          "mixed_sentiment_confusion"
+        ]
+      },
+      "TikTok": {
+        "total_audits": 2,
+        "violation_rate": 1.0,
+        "reliability_score": 0.0,
+        "common_violations": [
+          "cultural_slang_misinterpreted",
+          "sarcastic_content_unhandled",
+          "mixed_sentiment_confusion"
+        ]
+      }
+    },
+    "content_complexity": {
+      "sarcasm_detection_rate": 0.6,
+      "cultural_slang_detection_rate": 0.8,
+      "mixed_sentiment_detection_rate": 0.4,
+      "complexity_score": 60.0,
+      "handling_accuracy": 50.0,
+      "problematic_patterns": [
+        "High sarcasm detection rate",
+        "High cultural slang detection rate",
+        "High mixed sentiment detection rate",
+        "Low handling accuracy for complex content"
+      ]
+    },
+    "recent_alerts": [
+      {
+        "timestamp": "2026-01-17T15:07:44.939517",
+        "level": "critical",
+        "title": "Multiple Boundary Violations",
+        "handle": "@uk_lifestyle_creator",
+        "platform": "TikTok",
+        "audit_score": 55.0
+      },
+      {
+        "timestamp": "2026-01-17T15:07:46.954244",
+        "level": "critical",
+        "title": "Multiple Boundary Violations",
+        "handle": "@honest_reviewer_uk",
+        "platform": "Instagram",
+        "audit_score": 55.0
+      },
+      {
+        "timestamp": "2026-01-17T15:07:48.970836",
+        "level": "warning",
+        "title": "Boundary Violation Detected",
+        "handle": "@gen_z_creator vibes",
+        "platform": "TikTok",
+        "audit_score": 85.0
+      }
+    ]
+  },
+  "detailed_audit_records": [
+    {
+      "timestamp": "2026-01-17T15:07:42.933899",
+      "handle": "@sarcastic_beauty_guru",
+      "platform": "Instagram",
+      "raw_heuristic_score": 78.0,
+      "llm_adjusted_score": 78.0,
+      "adjustment_delta": 0,
+      "original_confidence": 0.82,
+      "final_confidence": 0.52,
+      "confidence_delta": -0.29999999999999993,
+      "data_completeness": "partial_no_comments",
+      "boundary_violations": [],
+      "sarcastic_content_detected": true,
+      "cultural_slang_detected": true,
+      "mixed_sentiment_detected": false,
+      "audit_score": 100.0,
+      "justification": "✅ All boundary checks passed. Refinement complies with safety guidelines."
+    },
+    {
+      "timestamp": "2026-01-17T15:07:44.939517",
+      "handle": "@uk_lifestyle_creator",
+      "platform": "TikTok",
+      "raw_heuristic_score": 85.0,
+      "llm_adjusted_score": 85.0,
+      "adjustment_delta": 0,
+      "original_confidence": 0.88,
+      "final_confidence": 0.88,
+      "confidence_delta": 0.0,
+      "data_completeness": "full",
+      "boundary_violations": [
+        "sarcastic_content_unhandled",
+        "cultural_slang_misinterpreted",
+        "mixed_sentiment_confusion"
+      ],
+      "sarcastic_content_detected": true,
+      "cultural_slang_detected": true,
+      "mixed_sentiment_detected": true,
+      "audit_score": 55.0,
+      "justification": "⚠️  Sarcastic content detected but not acknowledged in reasoning | ⚠️  Cultural slang detected but context not properly considered | ⚠️  Mixed sentiment detected but nuance not recognized | 🎭 Sarcasm detected in content | 🌍 Cultural slang detected | 😐 Mixed sentiment detected"
+    },
+    {
+      "timestamp": "2026-01-17T15:07:46.954244",
+      "handle": "@honest_reviewer_uk",
+      "platform": "Instagram",
+      "raw_heuristic_score": 65.0,
+      "llm_adjusted_score": 55.0,
+      "adjustment_delta": -10,
+      "original_confidence": 0.7,
+      "final_confidence": 0.33,
+      "confidence_delta": -0.36999999999999994,
+      "data_completeness": "partial_no_comments",
+      "boundary_violations": [
+        "sarcastic_content_unhandled",
+        "cultural_slang_misinterpreted",
+        "mixed_sentiment_confusion"
+      ],
+      "sarcastic_content_detected": true,
+      "cultural_slang_detected": true,
+      "mixed_sentiment_detected": true,
+      "audit_score": 55.0,
+      "justification": "⚠️  Sarcastic content detected but not acknowledged in reasoning | ⚠️  Cultural slang detected but context not properly considered | ⚠️  Mixed sentiment detected but nuance not recognized | 🎭 Sarcasm detected in content | 🌍 Cultural slang detected | 😐 Mixed sentiment detected"
+    },
+    {
+      "timestamp": "2026-01-17T15:07:48.970836",
+      "handle": "@gen_z_creator vibes",
+      "platform": "TikTok",
+      "raw_heuristic_score": 92.0,
+      "llm_adjusted_score": 82.0,
+      "adjustment_delta": -10,
+      "original_confidence": 0.9,
+      "final_confidence": 0.6,
+      "confidence_delta": -0.30000000000000004,
+      "data_completeness": "full",
+      "boundary_violations": [
+        "cultural_slang_misinterpreted"
+      ],
+      "sarcastic_content_detected": false,
+      "cultural_slang_detected": true,
+      "mixed_sentiment_detected": false,
+      "audit_score": 85.0,
+      "justification": "⚠️  Cultural slang detected but context not properly considered | 🌍 Cultural slang detected"
+    },
+    {
+      "timestamp": "2026-01-17T15:07:50.981118",
+      "handle": "@controversial_opinions",
+      "platform": "Instagram",
+      "raw_heuristic_score": 45.0,
+      "llm_adjusted_score": 35.0,
+      "adjustment_delta": -10,
+      "original_confidence": 0.6,
+      "final_confidence": 0.28,
+      "confidence_delta": -0.31999999999999995,
+      "data_completeness": "partial_no_comments",
+      "boundary_violations": [],
+      "sarcastic_content_detected": false,
+      "cultural_slang_detected": false,
+      "mixed_sentiment_detected": false,
+      "audit_score": 100.0,
+      "justification": "✅ All boundary checks passed. Refinement complies with safety guidelines."
+    }
+  ],
+  "time_series_data": {
+    "hourly": {
+      "violation_counts": [
+        {
+          "timestamp": 

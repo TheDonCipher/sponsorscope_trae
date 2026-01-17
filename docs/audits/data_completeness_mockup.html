@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Completeness Signaling - Mock Screenshots</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        body { background-color: #0f172a; color: #e2e8f0; font-family: monospace; }
+        .warning-banner { border-left: 4px solid; }
+        .warning-blocked { border-color: #eab308; background-color: rgba(234, 179, 8, 0.1); }
+        .warning-sparse { border-color: #64748b; background-color: rgba(100, 116, 139, 0.5); }
+        .warning-private { border-color: #475569; background-color: rgba(0, 0, 0, 0.4); }
+        .uncertainty-band { background: linear-gradient(90deg, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0.1) 50%, rgba(59, 130, 246, 0.3) 100%); }
+        .confidence-low { color: #a855f7; }
+        .confidence-medium { color: #eab308; }
+        .confidence-high { color: #3b82f6; }
+    </style>
+</head>
+<body class="p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <h1 class="text-3xl font-bold text-center mb-8">Data Completeness Signaling Test Results</h1>
+        
+        <!-- Test 1: Comments Disabled -->
+        <div class="bg-slate-900 rounded-lg p-6 border border-slate-700">
+            <h2 class="text-xl font-bold mb-4">Test 1: Profile with Comments Disabled</h2>
+            
+            <!-- Warning Banner -->
+            <div class="warning-banner warning-blocked rounded-r-lg p-4 mb-6">
+                <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined opacity-80">comments_disabled</span>
+                    <div>
+                        <h4 class="font-bold text-xs uppercase tracking-wider opacity-90 text-yellow-200">SIGNAL BLOCKED</h4>
+                        <p class="text-sm mt-1 opacity-80">The creator has disabled comments. Linguistic analysis is unavailable.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Metrics with Uncertainty -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-slate-800/50 p-4 rounded-lg">
+                    <h3 class="text-sm font-medium text-slate-400 mb-2">True Engagement</h3>
+                    <div class="text-2xl font-bold text-yellow-400 mb-2">65%</div>
+                    <div class="text-xs text-slate-500 mb-2">Confidence: 60%</div>
+                    <div class="uncertainty-band h-4 rounded relative">
+                        <div class="absolute inset-0 flex items-center justify-between px-1">
+                            <span class="text-xs">45%</span>
+                            <span class="text-xs">85%</span>
+                        </div>
+                    </div>
+                    <div class="text-xs text-slate-600 mt-1">Estimated Range</div>
+                </div>
+                
+                <div class="bg-slate-800/50 p-4 rounded-lg">
+                    <h3 class="text-sm font-medium text-slate-400 mb-2">Audience Authenticity</h3>
+                    <div class="text-2xl font-bold text-yellow-400 mb-2">70%</div>
+                    <div class="text-xs text-slate-500 mb-2">Confidence: 65%</div>
+                    <div class="uncertainty-band h-4 rounded relative">
+                        <div class="absolute inset-0 flex items-center justify-between px-1">
+                            <span class="text-xs">50%</span>
+                            <span class="text-xs">90%</span>
+                        </div>
+                    </div>
+                    <div class="text-xs text-slate-600 mt-1">Estimated Range</div>
+                </div>
+                
+                <div class="bg-slate-800/50 p-4 rounded-lg">
+                    <h3 class="text-sm font-medium text-slate-400 mb-2">Brand Safety</h3>
+                    <div class="text-2xl font-bold text-yellow-400 mb-2">80%</div>
+                    <div class="text-xs text-slate-500 mb-2">Confidence: 70%</div>
+                    <div class="uncertainty-band h-4 rounded relative">
+                        <div class="absolute inset-0 flex items-center justify-between px-1">
+                            <span class="text-xs">60%</span>
+                            <span class="text-xs">100%</span>
+                        </div>
+                    </div>
+                    <div class="text-xs text-slate-600 mt-1">Estimated Range</div>
+                </div>
+            </div>
+            
+            <div class="mt-4 p-3 bg-slate-800/30 rounded text-sm text-slate-400">
+                <strong>Data Completeness:</strong> partial_no_comments | 
+                <strong>Warning Type:</strong> blocked | 
+                <strong>Partial Data Detected:</strong> ✅ | 
+                <strong>Confidence Reduced:</strong> ✅
+            </div>
+        </div>
+        
+        <!-- Test 2: Recently Created Account -->
+        <div class="bg-slate-900 rounded-lg p-6 border border-slate-700">
+            <h2 class="text-xl font-bold mb-4">Test 2: Recently Created Account</h2>
+            
+            <!-- Warning Banner -->
+            <div class="warning-banner warning-sparse rounded-r-lg p-4 mb-6">
+                <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined opacity-80">data_usage</span>
+                    <div>
+                        <h4 class="font-bold text-xs uppercase tracking-wider opacity-90 text-slate-300">LOW SAMPLE SIZE</h4>
+                        <p class="text-sm mt-1 opacity-80">Data points insufficient for high-confidence analysis.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Metrics with Higher Uncertainty -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-slate-800/50 p-4 rounded-lg">
+                    <h3 class="text-sm font-medium text-slate-400 mb-2">True Engagement</h3>
+                    <div class="text-2xl font-bold text-purple-400 mb-2">45%</div>
+                    <div class="text-xs text-slate-500 mb-2">Confidence: 40%</div>
+                    <div class="uncertainty-band h-4 rounded relative" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.3) 0%, rgba(168, 85, 247, 0.1) 50%, rgba(168, 85, 247, 0.3) 100%);">
+                        <div class="absolute inset-0 flex items-center justify-between px-1">
+                            <span class="text-xs">25%</span>
+                            <span class="text-xs">65%</span>
+                        </div>
+                    </div>
+                    <div class="text-xs text-slate-600 mt-1">Wide Estimated Range</div>
+                </div>
+                
+                <div class="bg-slate-800/50 p-4 rounded-lg">
+                    <h3 class="text-sm font-medium text-slate-400 mb-2">Audience Authenticity</h3>
+                    <div class="text-2xl font-bold text-purple-400 mb-2">50%</div>
+                    <div class="text-xs text-slate-500 mb-2">Confidence: 45%</div>
+                    <div class="uncertainty-band h-4 rounded relative" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.3) 0%, rgba(168, 85, 247, 0.1) 50%, rgba(168, 85, 247, 0.3) 100%);">
+                        <div class="absolute inset-0 flex items-center justify-between px-1">
+                            <span class="text-xs">30%</span>
+                            <span class="text-xs">70%</span>
+                        </div>
+                    </div>
+                    <div class="text-xs text-slate-600 mt-1">Wide Estimated Range</div>
+                </div>
+                
+                <div class="bg-slate-800/50 p-4 rounded-lg">
+                    <h3 class="text-sm font-medium text-slate-400 mb-2">Brand Safety</h3>
+                    <div class="text-2xl font-bold text-yellow-400 mb-2">75%</div>
+                    <div class="text-xs text-slate-500 mb-2">Confidence: 50%</div>
+                    <div class="uncertainty-band h-4 rounded relative">
+                        <div class="absolute inset-0 flex items-center justify-between px-1">
+                            <span class="text-xs">55%</span>
+                            <span class="text-xs">95%</span>
+                        </div>
+                    </div>
+                    <div class="text-xs text-slate-600 mt-1">Estimated Range</div>
+                </div>
+            </div>
+            
+            <div class="mt-4 p-3 bg-slate-800/30 rounded text-sm text-slate-400">
+                <strong>Data Completeness:</strong> sparse | 
+                <strong>Warning Type:</strong> sparse | 
+                <strong>Partial Data Detected:</strong> ✅ | 
+                <strong>Confidence Reduced:</strong> ✅
+            </div>
+        </div>
+        
+        <!-- Test 3: Private Account -->
+        <div class="bg-slate-900 rounded-lg p-6 border border-slate-700">
+            <h2 class="text-xl font-bold mb-4">Test 3: Private Account</h2>
+            
+            <!-- Warning Banner -->
+            <div class="warning-banner warning-private rounded-r-lg p-4 mb-6">
+                <div class="flex items-start gap-3">
+                    <span class="material-symbols-outlined opacity-80">lock</span>
+                    <div>
+                        <h4 class="font-bold text-xs uppercase tracking-wider opacity-90 text-slate-400">ACCESS DENIED</h4>
+                        <p class="text-sm mt-1 opacity-80">This account is private. Public analysis is impossible.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- No Metrics Available -->
+            <div class="bg-slate-800/50 p-8 rounded-lg text-center">
+                <span class="material-symbols-outlined text-6xl text-slate-600 mb-4">block</span>
+                <h3 class="text-xl font-bold text-slate-400 mb-2">Analysis Unavailable</h3>
+                <p class="text-slate-500">This account is private and cannot be analyzed.</p>
+            </div>
+            
+            <div class="mt-4 p-3 bg-slate-800/30 rounded text-sm text-slate-400">
+                <strong>Data Completeness:</strong> unavailable | 
+                <strong>Warning Type:</strong> private | 
+                <strong>Partial Data Detected:</strong> ❌ | 
+                <strong>Confidence Reduced:</strong> N/A
+            </div>
+        </div>
+        
+        <!-- Summary -->
+        <div class="bg-slate-900 rounded-lg p-6 border border-slate-700">
+            <h2 class="text-xl font-bold mb-4">Test Summary</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div>
+                    <h3 class="font-bold text-green-400 mb-2">✅ Requirements Met</h3>
+                    <ul class="space-y-1 text-slate-300">
+                        <li>• Partial data detected for comments disabled</li>
+                        <li>• Partial data detected for sparse accounts</li>
+                        <li>• Warning banners displayed appropriately</li>
+                        <li>• Confidence visibly reduced for partial data</li>
+                        <li>• No scores without uncertainty context</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-blue-400 mb-2">📊 Data Completeness States</h3>
+                    <ul class="space-y-1 text-slate-300">
+                        <li>• <strong>partial_no_comments:</strong> Comments disabled</li>
+                        <li>• <strong>sparse:</strong> Recently created account</li>
+                        <li>• <strong>unavailable:</strong> Private account</li>
+                        <li>• <strong>Warning Types:</strong> blocked, sparse, private</li>
+                        <li>• <strong>UX Compliance:</strong> ✅ Compliant</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

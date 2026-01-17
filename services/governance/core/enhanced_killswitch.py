@@ -18,9 +18,8 @@ class EnhancedKillSwitch:
         self._redis_connected = False
         self._system_notices: List[str] = []
         
-        # Initialize Redis if available
-        if REDIS_AVAILABLE:
-            asyncio.create_task(self._init_redis())
+        # Initialize Redis if available (lazy initialization)
+        self._redis_initialized = False
     
     async def _init_redis(self):
         """Initialize Redis connection."""
@@ -47,6 +46,11 @@ class EnhancedKillSwitch:
         If True, new scans are allowed.
         If False, system rejects new scan requests (HTTP 503).
         """
+        # Lazy initialize Redis if not already done
+        if not self._redis_initialized and REDIS_AVAILABLE:
+            await self._init_redis()
+            self._redis_initialized = True
+            
         if self._redis_connected and self.redis_client:
             try:
                 redis_state = await self.redis_client.get(self._get_redis_key("scans"))
@@ -63,6 +67,11 @@ class EnhancedKillSwitch:
         If True, cached reports are readable.
         If False, entire system is down (Maintenance Mode).
         """
+        # Lazy initialize Redis if not already done
+        if not self._redis_initialized and REDIS_AVAILABLE:
+            await self._init_redis()
+            self._redis_initialized = True
+            
         if self._redis_connected and self.redis_client:
             try:
                 redis_state = await self.redis_client.get(self._get_redis_key("read"))

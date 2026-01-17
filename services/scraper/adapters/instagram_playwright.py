@@ -88,7 +88,7 @@ class InstagramPlaywrightScraper(BaseScraper):
             
         try:
             # Check for login wall
-            login_elements = await self.page.query_selector_all('[data-testid="login-form"], input[name="username"], .\_ab3w')
+            login_elements = await self.page.query_selector_all('[data-testid="login-form"], input[name="username"], r"._ab3w"')
             if login_elements:
                 errors.append("Login wall detected")
                 
@@ -98,7 +98,7 @@ class InstagramPlaywrightScraper(BaseScraper):
                 errors.append("Rate limiting detected")
                 
             # Check for challenge/captcha
-            challenge_elements = await self.page.query_selector_all('[data-testid="challenge"], .\_ab3w, text=/challenge|suspicious|verify/i')
+            challenge_elements = await self.page.query_selector_all('[data-testid="challenge"], text=/challenge|suspicious|verify/i')
             if challenge_elements:
                 errors.append("Challenge/captcha detected")
                 
@@ -160,24 +160,34 @@ class InstagramPlaywrightScraper(BaseScraper):
             # Strategy 2: Extract from page structure
             try:
                 # Look for follower count elements
-                follower_elements = await self.page.query_selector_all('a[href*="/followers/"] span, .\_ac2a span')
+                follower_elements = await self.page.query_selector_all('a[href*="/followers/"] span')
                 if follower_elements and len(follower_elements) > 0:
-                    follower_text = await follower_elements[0].inner_text()
-                    profile_data['follower_count'] = self._parse_count(follower_text)
-                    
+                    try:
+                        follower_text = await follower_elements[0].inner_text()
+                        profile_data['follower_count'] = self._parse_count(follower_text)
+                    except Exception as e:
+                        logger.debug(f"Failed to extract follower count: {e}")
+                
                 # Look for following count
-                following_elements = await self.page.query_selector_all('a[href*="/following/"] span, .\_ac2a span')
+                following_elements = await self.page.query_selector_all('a[href*="/following/"] span')
                 if following_elements and len(following_elements) > 1:
-                    following_text = await following_elements[1].inner_text()
-                    profile_data['following_count'] = self._parse_count(following_text)
+                    try:
+                        following_text = await following_elements[1].inner_text()
+                        profile_data['following_count'] = self._parse_count(following_text)
+                    except Exception as e:
+                        logger.debug(f"Failed to extract following count: {e}")
                     
                 # Look for post count
-                post_elements = await self.page.query_selector_all('.\_ac2a span, header span')
+                post_elements = await self.page.query_selector_all('header span')
                 for element in post_elements:
-                    text = await element.inner_text()
-                    if 'post' in text.lower() or re.match(r'^\d+[kKmM]?$', text):
-                        profile_data['post_count'] = self._parse_count(text)
-                        break
+                    try:
+                        text = await element.inner_text()
+                        if 'post' in text.lower() or re.match(r'^\d+[kKmM]?$', text):
+                            profile_data['post_count'] = self._parse_count(text)
+                            break
+                    except Exception as e:
+                        logger.debug(f"Failed to extract post count from element: {e}")
+                        continue
                         
             except Exception as e:
                 logger.debug(f"Structure extraction failed: {e}")
@@ -185,12 +195,15 @@ class InstagramPlaywrightScraper(BaseScraper):
             # Strategy 3: Extract bio and verification
             try:
                 # Extract bio
-                bio_elements = await self.page.query_selector_all('header h1, header div[class*="bio"], .\_aa_c')
-                if bio_elements:
-                    profile_data['bio'] = await bio_elements[0].inner_text()
+                bio_elements = await self.page.query_selector_all('header h1, header div[class*="bio"]')
+                if bio_elements and len(bio_elements) > 0:
+                    try:
+                        profile_data['bio'] = await bio_elements[0].inner_text()
+                    except Exception as e:
+                        logger.debug(f"Failed to extract bio: {e}")
                     
                 # Check for verification badge
-                verified_elements = await self.page.query_selector_all('[aria-label="Verified"], .\_aaav, .\_ab3w')
+                verified_elements = await self.page.query_selector_all('[aria-label="Verified"]')
                 profile_data['is_verified'] = len(verified_elements) > 0
                 
             except Exception as e:
@@ -348,11 +361,16 @@ class InstagramPlaywrightScraper(BaseScraper):
                     # Extract comment text
                     text_elements = await comment_element.query_selector_all('span, div[class*="text"]')
                     comment_text = ""
-                    for text_element in text_elements:
-                        text = await text_element.inner_text()
-                        if text and len(text) > 2:  # Filter out very short text
-                            comment_text = text
-                            break
+                    if text_elements and len(text_elements) > 0:
+                        for text_element in text_elements:
+                            try:
+                                text = await text_element.inner_text()
+                                if text and len(text) > 2:  # Filter out very short text
+                                    comment_text = text
+                                    break
+                            except Exception as e:
+                                logger.debug(f"Failed to extract comment text: {e}")
+                                continue
                             
                     if not comment_text:
                         continue
@@ -360,13 +378,16 @@ class InstagramPlaywrightScraper(BaseScraper):
                     # Extract author
                     author_elements = await comment_element.query_selector_all('a[href*="/"], h3, h4')
                     author_id = "unknown"
-                    if author_elements:
-                        author_href = await author_elements[0].get_attribute('href')
-                        if author_href:
-                            author_id = author_href.strip('/').split('/')[0] if '/' in author_href else f"user_{i}"
-                        else:
-                            author_text = await author_elements[0].inner_text()
-                            author_id = author_text.strip('@').split()[0]
+                    if author_elements and len(author_elements) > 0:
+                        try:
+                            author_href = await author_elements[0].get_attribute('href')
+                            if author_href:
+                                author_id = author_href.strip('/').split('/')[0] if '/' in author_href else f"user_{i}"
+                            else:
+                                author_text = await author_elements[0].inner_text()
+                                author_id = author_text.strip('@').split()[0]
+                        except Exception as e:
+                            logger.debug(f"Failed to extract author: {e}")
                             
                     # Create RawComment
                     comments.append(RawComment(

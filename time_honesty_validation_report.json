@@ -1,0 +1,45 @@
+{
+  "timestamp": 1768660425.2710788,
+  "tests_passed": {
+    "202_accepted_response": false,
+    "polling_with_backoff": false,
+    "no_blocking_requests": true
+  },
+  "network_log": [
+    {
+      "timestamp": 1768660425.2700975,
+      "method": "POST",
+      "endpoint": "/api/analyze",
+      "status": 500,
+      "response_time_ms": 279.2,
+      "request_data": {
+        "handle": "test_user_123",
+        "platform": "instagram"
+      },
+      "blocking": false
+    }
+  ],
+  "ui_timeline": [
+    {
+      "timestamp": 1768660425.2701075,
+      "event": "API Call: POST /api/analyze",
+      "status": 500,
+      "response_time_ms": 279.2,
+      "type": "api_call"
+    }
+  ],
+  "timeline_analysis": {
+    "total_events": 1,
+    "api_calls": 1,
+    "ui_states": 0,
+    "slow_responses": 0,
+    "issues": [
+      "Missing 'Request filed' state"
+    ]
+  },
+  "summary": {
+    "total_tests": 3,
+    "passed_tests": 1,
+    "failed_tests": 2
+  }
+}

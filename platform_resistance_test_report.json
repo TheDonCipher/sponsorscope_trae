@@ -1,0 +1,163 @@
+{
+  "test_summary": {
+    "total_tests": 9,
+    "passed_tests": 8,
+    "failed_tests": 1,
+    "success_rate": 88.88888888888889,
+    "timestamp": "2026-01-17T14:52:10.951874"
+  },
+  "test_results": [
+    {
+      "test_name": "curl_scraper",
+      "description": "Should detect curl as scraper",
+      "user_agent": "curl/7.68.0",
+      "expected_blocked": true,
+      "actual_blocked": true,
+      "reason": "Automated access detected (score: 13)",
+      "metadata": {
+        "scraper_score": 13,
+        "detection_method": "heuristic_analysis",
+        "user_agent": "curl/7.68.0",
+        "timestamp": "2026-01-17T14:52:10.930061"
+      },
+      "passed": true,
+      "timestamp": "2026-01-17T14:52:10.931484"
+    },
+    {
+      "test_name": "python_requests_scraper",
+      "description": "Should detect Python requests as scraper",
+      "user_agent": "python-requests/2.25.1",
+      "expected_blocked": true,
+      "actual_blocked": true,
+      "reason": "Automated access detected (score: 13)",
+      "metadata": {
+        "scraper_score": 13,
+        "detection_method": "heuristic_analysis",
+        "user_agent": "python-requests/2.25.1",
+        "timestamp": "2026-01-17T14:52:10.931626"
+      },
+      "passed": true,
+      "timestamp": "2026-01-17T14:52:10.932065"
+    },
+    {
+      "test_name": "selenium_scraper",
+      "description": "Should detect Selenium as scraper",
+      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 (Selenium/4.0.0)",
+      "expected_blocked": true,
+      "actual_blocked": true,
+      "reason": "Automated access detected (score: 10)",
+      "metadata": {
+        "scraper_score": 10,
+        "detection_method": "heuristic_analysis",
+        "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 (Selenium/4.0.0)",
+        "timestamp": "2026-01-17T14:52:10.932161"
+      },
+      "passed": true,
+      "timestamp": "2026-01-17T14:52:10.932505"
+    },
+    {
+      "test_name": "legitimate_browser",
+      "description": "Should allow legitimate browser",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+      "expected_blocked": false,
+      "actual_blocked": true,
+      "reason": "Automated access detected (score: 6)",
+      "metadata": {
+        "scraper_score": 6,
+        "detection_method": "heuristic_analysis",
+        "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+        "timestamp": "2026-01-17T14:52:10.932626"
+      },
+      "passed": false,
+      "timestamp": "2026-01-17T14:52:10.932912"
+    },
+    {
+      "test_name": "missing_user_agent",
+      "description": "Should block missing user agent",
+      "user_agent": "",
+      "expected_blocked": true,
+      "actual_blocked": true,
+      "reason": "Automated access detected (score: 13)",
+      "metadata": {
+        "scraper_score": 13,
+        "detection_method": "heuristic_analysis",
+        "user_agent": "",
+        "timestamp": "2026-01-17T14:52:10.933173"
+      },
+      "passed": true,
+      "timestamp": "2026-01-17T14:52:10.933644"
+    },
+    {
+      "test_name": "no_fabricated_data",
+      "description": "Verify no fabricated data in resistance response",
+      "has_fabricated_data": false,
+      "error_data": {
+        "message": "Access restricted for security reasons. Contact support@sponsorscope.ai for assistance.",
+        "error_type": "platform_resistance",
+        "details": {
+          "halt_reason": "Automated access detected (score: 16)",
+          "halt_timestamp": "2026-01-17T14:52:10.934218",
+          "metadata": {
+            "scraper_score": 16,
+            "detection_method": "heuristic_analysis",
+            "user_agent": "curl/7.68.0",
+            "timestamp": "2026-01-17T14:52:10.933867"
+          },
+          "user_facing_message": "Access restricted for security reasons. Contact support@sponsorscope.ai for assistance.",
+          "scraper_guidance": "Halt scraping operations. No fabricated data will be provided.",
+          "contact_info": "Contact support@sponsorscope.ai for legitimate access"
+        },
+        "timestamp": "2026-01-17T14:52:10.934235"
+      },
+      "passed": true,
+      "timestamp": "2026-01-17T14:52:10.934416"
+    },
+    {
+      "test_name": "error_logging",
+      "description": "Test various logging mechanisms",
+      "events_logged": 5,
+      "passed": true,
+      "timestamp": "2026-01-17T14:52:10.949763"
+    },
+    {
+      "test_name": "legitimate_access_logging",
+      "description": "Test legitimate access logging",
+      "passed": true,
+      "timestamp": "2026-01-17T14:52:10.950782"
+    },
+    {
+      "test_name": "scraper_halt_safety",
+      "description": "Test scraper halt safety and information exposure",
+      "has_sensitive_data": false,
+      "has_clear_guidance": true,
+      "has_contact_info": true,
+      "error_details": {
+        "halt_reason": "Automated access detected (score: 12)",
+        "halt_timestamp": "2026-01-17T14:52:10.951182",
+        "metadata": {
+          "scraper_score": 12,
+          "detection_method": "heuristic_analysis",
+          "user_agent": "curl/7.68.0",
+          "timestamp": "2026-01-17T14:52:10.951163"
+        },
+        "user_facing_message": "Access restricted for security reasons. Contact support@sponsorscope.ai for assistance.",
+        "scraper_guidance": "Halt scraping operations. No fabricated data will be provided.",
+        "contact_info": "Contact support@sponsorscope.ai for legitimate access"
+      },
+      "passed": true,
+      "timestamp": "2026-01-17T14:52:10.951395"
+    }
+  ],
+  "platform_resistance_status": {
+    "mode": "moderate",
+    "scraper_threshold": 5,
+    "logging_enabled": true,
+    "error_handling": "comprehensive"
+  },
+  "data_integrity_verdict": {
+    "no_fabricated_data": true,
+    "safe_scraper_halt": true,
+    "comprehensive_logging": true,
+    "user_communication": "clear_and_helpful"
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "test_type": "mock_data_completeness_signaling",
+  "generated_at": "2026-01-17T16:36:52.679561",
+  "total_tests": 3,
+  "results": [
+    {
+      "profile": {
+        "handle": "test_no_comments_001",
+        "platform": "instagram",
+        "scenario": "comments_disabled",
+        "description": "Profile with comments disabled"
+      },
+      "status": "success",
+      "report_data": {
+        "handle": "test_no_comments_001",
+        "platform": "instagram",
+        "data_completeness": "partial_no_comments",
+        "true_engagement": {
+          "score": 65,
+          "confidence": 0.6,
+          "uncertainty_band": {
+            "low": 45,
+            "high": 85
+          }
+        },
+        "audience_authenticity": {
+          "score": 70,
+          "confidence": 0.65,
+          "uncertainty_band": {
+            "low": 50,
+            "high": 90
+          }
+        },
+        "brand_safety": {
+          "score": 80,
+          "confidence": 0.7,
+          "uncertainty_band": {
+            "low": 60,
+            "high": 100
+          }
+        }
+      },
+      "verification_results": {
+        "data_completeness": "partial_no_comments",
+        "expected_completeness": "partial_no_comments",
+        "completeness_match": true,
+        "partial_data_detected": true,
+        "warning_displayed": true,
+        "expected_warning_type": "blocked",
+        "actual_warning_type": "blocked",
+        "confidence_reduced": true,
+        "confidence_score": 0.6,
+        "score_without_uncertainty": false,
+        "ux_compliance": {
+          "overall_compliance": true,
+          "checks": {
+            "warning_displayed": true,
+            "confidence_appropriate": true,
+            "uncertainty_indicated": true,
+            "no_misleading_scores": true,
+            "proper_explanation": true
+          }
+        }
+      }
+    },
+    {
+      "profile": {
+        "handle": "new_user_2024_001",
+        "platform": "instagram",
+        "scenario": "recently_created",
+        "description": "Recently created account with minimal data"
+      },
+      "status": "success",
+      "report_data": {
+        "handle": "new_user_2024_001",
+        "platform": "instagram",
+        "data_completeness": "sparse",
+        "true_engagement": {
+          "score": 45,
+          "confidence": 0.4,
+          "uncertainty_band": {
+            "low": 25,
+            "high": 65
+          }
+        },
+        "audience_authenticity": {
+          "score": 50,
+          "confidence": 0.45,
+          "uncertainty_band": {
+            "low": 30,
+            "high": 70
+          }
+        },
+        "brand_safety": {
+          "score": 75,
+          "confidence": 0.5,
+          "uncertainty_band": {
+            "low": 55,
+            "high": 95
+          }
+        }
+      },
+      "verification_results": {
+        "data_completeness": "sparse",
+        "expected_completeness": "sparse",
+        "completeness_match": true,
+        "partial_data_detected": true,
+        "warning_displayed": true,
+        "expected_warning_type": "sparse",
+        "actual_warning_type": "sparse",
+        "confidence_reduced": true,
+        "confidence_score": 0.4,
+        "score_without_uncertainty": false,
+        "ux_compliance": {
+          "overall_compliance": true,
+          "checks": {
+            "warning_displayed": true,
+            "confidence_appropriate": true,
+            "uncertainty_indicated": true,
+            "no_misleading_scores": true,
+            "proper_explanation": true
+          }
+        }
+      }
+    },
+    {
+      "profile": {
+        "handle": "test_private_001",
+        "platform": "instagram",
+        "scenario": "private_account",
+        "description": "Private account with access denied"
+      },
+      "status": "success",
+      "report_data": {
+        "handle": "test_private_001",
+        "platform": "instagram",
+        "data_completeness": "unavailable",
+        "error": "Private account - analysis unavailable",
+        "true_engagement": null,
+        "audience_authenticity": null,
+        "brand_safety": null
+      },
+      "verification_results": {
+        "data_completeness": "unavailable",
+        "expected_completeness": "unavailable",
+        "completeness_match": true,
+        "partial_data_detected": false,
+        "warning_displayed": true,
+        "expected_warning_type": "private",
+        "actual_warning_type": "private",
+        "confidence_reduced": false,
+        "confidence_score": 0.0,
+        "score_without_uncertainty": false,
+        "ux_compliance": {
+          "overall_compliance": true,
+          "checks": {
+            "warning_displayed": true,
+            "confidence_appropriate": true,
+            "uncertainty_indicated": true,
+            "no_misleading_scores": true,
+            "proper_explanation": true
+          }
+        }
+      }
+    }
+  ]
+}

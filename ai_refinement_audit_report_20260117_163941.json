@@ -1,0 +1,141 @@
+{
+  "audit_metadata": {
+    "generated_at": "2026-01-17T14:39:41.044271",
+    "total_audits": 5,
+    "auditor_version": "1.0.0"
+  },
+  "compliance_summary": {
+    "compliance_rate": 0.4,
+    "risk_score": 80.0,
+    "compliant_audits": 2,
+    "violation_count": 9
+  },
+  "boundary_statistics": {
+    "adjustment_boundary": 15.0,
+    "average_adjustment_delta": 6.6,
+    "average_confidence_delta": 0.09600000000000002,
+    "max_adjustment_observed": 25
+  },
+  "violation_breakdown": {
+    "sarcastic_content_unhandled": 2,
+    "cultural_slang_misinterpreted": 2,
+    "confidence_increase_partial_data": 2,
+    "mixed_sentiment_confusion": 1,
+    "adjustment_exceeded": 1,
+    "missing_reasoning": 1
+  },
+  "detailed_audits": [
+    {
+      "timestamp": "2026-01-17T14:39:41.032359",
+      "handle": "@sarcastic_influencer",
+      "platform": "Instagram",
+      "raw_heuristic_score": 75.0,
+      "llm_adjusted_score": 83.0,
+      "adjustment_delta": 8,
+      "original_confidence": 0.8,
+      "final_confidence": 0.75,
+      "confidence_delta": -0.050000000000000044,
+      "data_completeness": "partial_no_comments",
+      "boundary_violations": [
+        "sarcastic_content_unhandled",
+        "cultural_slang_misinterpreted"
+      ],
+      "content_characteristics": {
+        "sarcasm_detected": true,
+        "cultural_slang_detected": true,
+        "mixed_sentiment_detected": false
+      },
+      "justification": "⚠️  Sarcastic content detected but not acknowledged in reasoning | ⚠️  Cultural slang detected but context not properly considered | 🎭 Sarcasm detected in content | 🌍 Cultural slang detected",
+      "audit_score": 70.0
+    },
+    {
+      "timestamp": "2026-01-17T14:39:41.035235",
+      "handle": "@uk_creator_london",
+      "platform": "TikTok",
+      "raw_heuristic_score": 82.0,
+      "llm_adjusted_score": 70.0,
+      "adjustment_delta": -12,
+      "original_confidence": 0.85,
+      "final_confidence": 0.9,
+      "confidence_delta": 0.050000000000000044,
+      "data_completeness": "full",
+      "boundary_violations": [],
+      "content_characteristics": {
+        "sarcasm_detected": true,
+        "cultural_slang_detected": true,
+        "mixed_sentiment_detected": false
+      },
+      "justification": "✅ All boundary checks passed. Refinement complies with safety guidelines.",
+      "audit_score": 100.0
+    },
+    {
+      "timestamp": "2026-01-17T14:39:41.037240",
+      "handle": "@controversial_commenter",
+      "platform": "Instagram",
+      "raw_heuristic_score": 65.0,
+      "llm_adjusted_score": 80.0,
+      "adjustment_delta": 15,
+      "original_confidence": 0.7,
+      "final_confidence": 0.85,
+      "confidence_delta": 0.15000000000000002,
+      "data_completeness": "partial_no_comments",
+      "boundary_violations": [
+        "confidence_increase_partial_data",
+        "sarcastic_content_unhandled",
+        "cultural_slang_misinterpreted",
+        "mixed_sentiment_confusion"
+      ],
+      "content_characteristics": {
+        "sarcasm_detected": true,
+        "cultural_slang_detected": true,
+        "mixed_sentiment_detected": true
+      },
+      "justification": "⚠️  Confidence increased under partial data: +0.15 (should decrease or stay same) | ⚠️  Sarcastic content detected but not acknowledged in reasoning | ⚠️  Cultural slang detected but context not properly considered | ⚠️  Mixed sentiment detected but nuance not recognized | 🎭 Sarcasm detected in content | 🌍 Cultural slang detected | 😐 Mixed sentiment detected",
+      "audit_score": 30.0
+    },
+    {
+      "timestamp": "2026-01-17T14:39:41.039422",
+      "handle": "@extreme_adjuster",
+      "platform": "TikTok",
+      "raw_heuristic_score": 45.0,
+      "llm_adjusted_score": 70.0,
+      "adjustment_delta": 25,
+      "original_confidence": 0.6,
+      "final_confidence": 0.95,
+      "confidence_delta": 0.35,
+      "data_completeness": "partial_no_comments",
+      "boundary_violations": [
+        "adjustment_exceeded",
+        "confidence_increase_partial_data",
+        "missing_reasoning"
+      ],
+      "content_characteristics": {
+        "sarcasm_detected": false,
+        "cultural_slang_detected": false,
+        "mixed_sentiment_detected": false
+      },
+      "justification": "❌ Adjustment boundary exceeded: +25.0 exceeds ±15.0 limit | ⚠️  Confidence increased under partial data: +0.35 (should decrease or stay same) | ❌ Insufficient reasoning provided for refinement decision",
+      "audit_score": 0.0
+    },
+    {
+      "timestamp": "2026-01-17T14:39:41.041831",
+      "handle": "@gen_z_creator",
+      "platform": "TikTok",
+      "raw_heuristic_score": 88.0,
+      "llm_adjusted_score": 85.0,
+      "adjustment_delta": -3,
+      "original_confidence": 0.82,
+      "final_confidence": 0.8,
+      "confidence_delta": -0.019999999999999907,
+      "data_completeness": "full",
+      "boundary_violations": [],
+      "content_characteristics": {
+        "sarcasm_detected": false,
+        "cultural_slang_detected": true,
+        "mixed_sentiment_detected": false
+      },
+      "justification": "✅ All boundary checks passed. Refinement complies with safety guidelines.",
+      "audit_score": 100.0
+    }
+  ]
+}

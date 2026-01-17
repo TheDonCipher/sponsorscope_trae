@@ -7,13 +7,14 @@ Simulates comprehensive testing based on existing architecture and requirements
 import json
 import time
 import random
+import sys
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Optional
 import logging
 
 # Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 class MockE2ETester:
@@ -124,7 +125,7 @@ class MockE2ETester:
                 }
             }
         
-        else:  # Full data scenarios
+        elif test_type in ["brand", "creator", "media"]:  # Full data scenarios
             return {
                 "status": "success",
                 "data_completeness": "full",
@@ -138,6 +139,28 @@ class MockE2ETester:
                 },
                 "posts_extracted": random.randint(50, 100),
                 "comments_extracted": random.randint(200, 1000),
+                "session_metadata": {
+                    "browser_version": "Chrome/120.0.0.0",
+                    "scraped_at": datetime.utcnow().isoformat(),
+                    "ip_session": f"{handle}_{int(time.time())}",
+                    "blocking_mechanisms": []
+                }
+            }
+        else:
+            # Default case for any other test types
+            return {
+                "status": "success",
+                "data_completeness": "full",
+                "scraping_errors": [],
+                "profile_data": {
+                    "handle": handle,
+                    "platform": platform,
+                    "follower_count": random.randint(1000, 100000),
+                    "post_count": random.randint(50, 500),
+                    "bio": f"Data extracted for {handle}"
+                },
+                "posts_extracted": random.randint(20, 80),
+                "comments_extracted": random.randint(100, 500),
                 "session_metadata": {
                     "browser_version": "Chrome/120.0.0.0",
                     "scraped_at": datetime.utcnow().isoformat(),
@@ -163,6 +186,8 @@ class MockE2ETester:
         
         # Generate pillar scores with LLM calibration
         pillars = {}
+        recalibrated_confidence = base_confidence  # Default value
+        
         for pillar_name in ["true_engagement", "audience_authenticity", "brand_safety"]:
             
             # Base signal strength (0-100)
@@ -175,8 +200,6 @@ class MockE2ETester:
             # Confidence recalibration based on signal strength
             if base_signal > 80 and random.random() > 0.5:  # Strong signal detected
                 recalibrated_confidence = min(1.0, base_confidence + 0.1)
-            else:
-                recalibrated_confidence = base_confidence
             
             pillars[pillar_name] = {
                 "signal_strength": round(adjusted_signal, 1),
@@ -260,14 +283,18 @@ class MockE2ETester:
         try:
             # Phase 1: Playwright adapter testing
             logger.info(f"🔍 Testing Playwright adapter for {platform}...")
+            logger.debug(f"Calling simulate_playwright_scraping with handle={handle}, platform={platform}, test_type={test_type}")
             scrape_result = self.simulate_playwright_scraping(handle, platform, test_type)
+            logger.debug(f"simulate_playwright_scraping returned: {scrape_result}")
             
             # Log scraping session to governance log
             self.log_scraping_session(handle, platform, scrape_result)
             
             # Phase 2: Report generation
             logger.info(f"📊 Generating report for {handle}...")
+            logger.debug(f"Calling generate_mock_report with handle={handle}, platform={platform}, scrape_result={scrape_result}")
             report_data = self.generate_mock_report(handle, platform, scrape_result)
+            logger.debug(f"generate_mock_report returned: {report_data}")
             
             # Phase 3: Verify requirements
             logger.info(f"✅ Verifying E2E requirements...")
@@ -303,7 +330,9 @@ class MockE2ETester:
             logger.info(f"✅ Test completed successfully for {handle}")
             
         except Exception as e:
+            import traceback
             logger.error(f"❌ Test failed for {handle}: {str(e)}")
+            logger.error(f"Error traceback: {traceback.format_exc()}")
             result.update({
                 "status": "failed",
                 "error": str(e),
@@ -445,7 +474,7 @@ class MockE2ETester:
             "platform": platform,
             "scraped_at": datetime.utcnow().isoformat(),
             "ip_session": scrape_result.get("session_metadata", {}).get("ip_session", "unknown"),
-            "failure_reason": scrape_result.get("scraping_errors", [None])[0],
+            "failure_reason": scrape_result.get("scraping_errors", [None])[0] if scrape_result.get("scraping_errors") else None,
             "data_completeness": scrape_result.get("data_completeness", "unknown"),
             "browser_version": scrape_result.get("session_metadata", {}).get("browser_version", "unknown"),
             "session_metadata": scrape_result.get("session_metadata", {})

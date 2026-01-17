@@ -30,9 +30,8 @@ class RateLimiter:
         self.rapid_resubmission_threshold = int(os.getenv("RAPID_RESUBMISSION_THRESHOLD", "5"))
         self.rapid_resubmission_window = int(os.getenv("RAPID_RESUBMISSION_WINDOW", "60"))  # seconds
         
-        # Initialize Redis if available
-        if REDIS_AVAILABLE:
-            asyncio.create_task(self._init_redis())
+        # Initialize Redis if available (lazy initialization)
+        self._redis_initialized = False
     
     async def _init_redis(self):
         """Initialize Redis connection."""
@@ -74,6 +73,11 @@ class RateLimiter:
     
     async def _check_redis_limit(self, ip: str, limit: int, window_seconds: int) -> Tuple[bool, int]:
         """Check rate limit using Redis."""
+        # Lazy initialize Redis if not already done
+        if not self._redis_initialized and REDIS_AVAILABLE:
+            await self._init_redis()
+            self._redis_initialized = True
+            
         if not self._redis_connected or not self.redis_client:
             return await self._check_memory_limit(ip, limit, window_seconds)
         
