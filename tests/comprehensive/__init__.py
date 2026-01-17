@@ -1,0 +1,1 @@
+# Comprehensive Testing Suite for SponsorScope.ai

@@ -1,0 +1,1 @@
+# LLM Safety Tests for SponsorScope.ai Comprehensive Testing Suite

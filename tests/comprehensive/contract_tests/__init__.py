@@ -1,0 +1,1 @@
+# Contract Tests for SponsorScope.ai Comprehensive Testing Suite

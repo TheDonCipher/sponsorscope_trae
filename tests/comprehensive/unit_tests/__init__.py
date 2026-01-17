@@ -1,0 +1,1 @@
+# Unit Tests for SponsorScope.ai Comprehensive Testing Suite

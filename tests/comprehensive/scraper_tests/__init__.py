@@ -1,0 +1,1 @@
+# Scraper Reality Tests for SponsorScope.ai Comprehensive Testing Suite
