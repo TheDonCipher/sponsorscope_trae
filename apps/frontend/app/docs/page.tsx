@@ -1,9 +1,8 @@
-import { Navbar } from '../../components/Navbar';
+import { Footer } from '../../components/Footer';
 
 export default function ApiDocs() {
   return (
     <div className="min-h-screen bg-background-light dark:bg-background-dark text-[#101816] dark:text-white font-display">
-      <Navbar />
       <div className="flex">
         {/* Sidebar */}
         <div className="w-64 border-r border-border-light dark:border-border-dark min-h-[calc(100vh-64px)] hidden md:block p-6">
@@ -81,6 +80,7 @@ export default function ApiDocs() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

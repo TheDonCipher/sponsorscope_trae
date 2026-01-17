@@ -20,7 +20,6 @@ export const Navbar = () => {
           </div>
           {/* Action */}
           <div className="flex items-center gap-4">
-            <Link className="text-sm font-medium text-slate-600 dark:text-slate-300 hidden sm:block" href="/login">Login</Link>
             <button className="flex items-center justify-center h-9 px-4 rounded-lg bg-primary hover:bg-emerald-400 text-[#101816] text-sm font-bold transition-all shadow-sm shadow-primary/20">
               Get Started
             </button>

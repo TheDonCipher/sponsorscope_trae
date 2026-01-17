@@ -1,9 +1,10 @@
 import { Navbar } from '../../components/Navbar';
 
+import { Footer } from '../../components/Footer';
+
 export default function Settings() {
   return (
     <div className="min-h-screen bg-background-light dark:bg-background-dark text-[#101816] dark:text-white font-display">
-      <Navbar />
       <div className="max-w-3xl mx-auto px-6 py-12">
         <h1 className="text-3xl font-bold mb-8">Settings</h1>
 
@@ -66,6 +67,7 @@ export default function Settings() {
             </section>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -1,9 +1,10 @@
 import { Navbar } from '../../components/Navbar';
 
+import { Footer } from '../../components/Footer';
+
 export default function ResearchContext() {
   return (
     <div className="min-h-screen bg-background-light dark:bg-background-dark text-[#101816] dark:text-white font-display">
-      <Navbar />
       <div className="max-w-4xl mx-auto px-6 py-12">
         <div className="mb-8">
             <span className="text-primary text-sm font-bold tracking-widest uppercase">Active Calibration</span>
@@ -37,7 +38,7 @@ export default function ResearchContext() {
             
             <h3>Inclusion Criteria</h3>
             <ul>
-                <li><strong>Geography:</strong> >60% audience location in US/Canada.</li>
+                <li><strong>Geography:</strong> &gt;60% audience location in US/Canada.</li>
                 <li><strong>Language:</strong> English (primary).</li>
                 <li><strong>Content:</strong> Visual-first lifestyle content (verified via computer vision tags).</li>
                 <li><strong>Follower Count:</strong> 10k - 5M.</li>
@@ -51,6 +52,7 @@ export default function ResearchContext() {
             </p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

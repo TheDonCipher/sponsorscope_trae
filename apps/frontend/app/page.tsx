@@ -1,16 +1,21 @@
 "use client";
 
 import { useState } from 'react';
-import { ReportView } from '../components/ReportView/ReportView';
 import { Navbar } from '../components/Navbar';
+import { Footer } from '../components/Footer';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [searchHandle, setSearchHandle] = useState('');
-  const [activeHandle, setActiveHandle] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleSearch = () => {
     if (searchHandle) {
-      setActiveHandle(searchHandle);
+      // Basic validation: remove @ if present
+      const cleanHandle = searchHandle.replace('@', '').trim();
+      if (cleanHandle) {
+        router.push(`/report/${cleanHandle}`);
+      }
     }
   };
 
@@ -20,32 +25,10 @@ export default function Home() {
     }
   };
 
-  if (activeHandle) {
-    return (
-      <div className="min-h-screen bg-background-light dark:bg-background-dark font-display">
-         <nav className="sticky top-0 z-50 bg-white/90 dark:bg-[#1b212d]/90 backdrop-blur-md border-b border-[#f0f5f3] dark:border-gray-800">
-          <div className="px-4 md:px-10 py-3 max-w-7xl mx-auto flex items-center justify-between gap-4">
-            <div className="flex items-center gap-2 text-[#101816] dark:text-white min-w-fit cursor-pointer" onClick={() => setActiveHandle(null)}>
-              <div className="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
-                <span className="material-symbols-outlined text-[20px]">radar</span>
-              </div>
-              <h2 className="text-xl font-bold tracking-tight">SponsorScope</h2>
-            </div>
-             <div className="flex items-center gap-4 md:gap-6">
-                <button onClick={() => setActiveHandle(null)} className="text-sm font-bold text-slate-600 hover:text-primary">Back to Search</button>
-             </div>
-          </div>
-        </nav>
-        <ReportView handle={activeHandle} />
-      </div>
-    );
-  }
-
   return (
     <main className="flex flex-col min-h-screen bg-background-light dark:bg-background-dark text-[#101816] dark:text-white font-display overflow-x-hidden antialiased">
       {/* Top Navigation */}
-      <Navbar />
-
+      
       {/* Hero Section */}
       <section className="relative pt-16 pb-12 sm:pt-24 sm:pb-20 lg:pb-24 overflow-hidden">
         {/* Background Decoration */}
@@ -110,8 +93,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Live Intelligence Dashboard */}
-      <section className="flex-1 bg-slate-50 dark:bg-[#151a23] py-16 border-t border-border-light dark:border-border-dark">
+      {/* Live Intelligence Dashboard - REMOVED */}
+      <section className="bg-slate-50 dark:bg-[#151a23] py-16 border-t border-border-light dark:border-border-dark hidden">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
             <div>
@@ -228,6 +211,52 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Methodology Section */}
+      <section className="py-24 bg-surface-light dark:bg-surface-dark border-t border-border-light dark:border-border-dark">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl font-bold text-[#101816] dark:text-white mb-4">Deep Tech Methodology</h2>
+            <p className="text-slate-600 dark:text-slate-400">
+              Our analysis pipeline combines graph theory, heuristic scoring, and large language models to provide a holistic view of influencer credibility.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="p-6 rounded-2xl bg-slate-50 dark:bg-[#151a23] border border-border-light dark:border-border-dark">
+              <div className="size-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4">
+                <span className="material-symbols-outlined text-2xl">hub</span>
+              </div>
+              <h3 className="text-xl font-bold text-[#101816] dark:text-white mb-2">Graph Analysis</h3>
+              <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                We map connection reciprocity and reuse patterns to identify artificial engagement networks and pod activity.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-slate-50 dark:bg-[#151a23] border border-border-light dark:border-border-dark">
+              <div className="size-12 rounded-lg bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-4">
+                <span className="material-symbols-outlined text-2xl">psychology</span>
+              </div>
+              <h3 className="text-xl font-bold text-[#101816] dark:text-white mb-2">LLM Refinement</h3>
+              <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                Contextual understanding of content safety using advanced LLMs to detect hate speech, political bias, and brand risks.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-slate-50 dark:bg-[#151a23] border border-border-light dark:border-border-dark">
+              <div className="size-12 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
+                <span className="material-symbols-outlined text-2xl">policy</span>
+              </div>
+              <h3 className="text-xl font-bold text-[#101816] dark:text-white mb-2">Governance & Ethics</h3>
+              <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                Automated ethical reviews and killswitches ensure data integrity and compliance with platform policies.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
     </main>
   );
 }

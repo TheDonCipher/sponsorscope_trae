@@ -1,9 +1,9 @@
 import { Navbar } from '../../components/Navbar';
+import { Footer } from '../../components/Footer';
 
 export default function Pricing() {
   return (
     <div className="min-h-screen bg-background-light dark:bg-background-dark text-[#101816] dark:text-white font-display">
-      <Navbar />
       <div className="max-w-7xl mx-auto px-6 py-20">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Transparent Pricing for Modern Vetting</h1>
@@ -64,6 +64,7 @@ export default function Pricing() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

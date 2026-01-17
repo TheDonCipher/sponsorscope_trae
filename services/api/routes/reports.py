@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, Request
 from services.api.models.report import ReportResponse
 from services.api.assembler import ReportAssembler
 from services.governance.core.killswitch import KillSwitch
@@ -6,8 +6,21 @@ from services.scraper.adapters.instagram import InstagramScraper
 from services.analyzer.heuristics.engagement import compute_true_engagement
 from services.analyzer.heuristics.authenticity import compute_audience_authenticity
 from shared.schemas.domain import DataCompleteness
+from services.governance.core.engine import GovernanceEngine
+from services.governance.models.request import IssueType
+from pydantic import BaseModel
+from types import SimpleNamespace
 
 router = APIRouter()
+
+# Instantiate Governance Engine (Singleton-ish)
+governance = GovernanceEngine(db_client=None)
+
+class CorrectionInput(BaseModel):
+    handle: str
+    issue_type: IssueType
+    explanation: str = None
+    report_id: str = "unknown"
 
 @router.get("/report/{handle}", response_model=ReportResponse)
 async def get_report(handle: str):
@@ -66,3 +79,27 @@ async def get_evidence(evidence_id: str):
     Retrieve specific raw evidence (screenshot/json).
     """
     raise HTTPException(status_code=501, detail="Not implemented")
+
+@router.post("/correction")
+async def submit_correction(input: CorrectionInput, request: Request):
+    """
+    Submit a correction request for a report.
+    """
+    # Create a mock report object sufficient for GovernanceEngine check
+    # We default to PARTIAL_NO_COMMENTS to allow the request to proceed in most cases,
+    # unless the issue implies otherwise.
+    # In a real system, we would fetch the report from DB.
+    mock_report = SimpleNamespace(
+        id=input.report_id,
+        data_completeness=DataCompleteness.PARTIAL_NO_COMMENTS
+    )
+    
+    result = governance.submit_request(
+        handle=input.handle,
+        report=mock_report, # type: ignore
+        issue_type=input.issue_type,
+        ip_address=request.client.host if request.client else "unknown",
+        explanation=input.explanation
+    )
+    
+    return result

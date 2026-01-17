@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useReport } from '../../hooks/useReport';
+import { ConfidenceMeter } from '../Viz/ConfidenceMeter';
+import { UncertaintyBand } from '../Viz/UncertaintyBand';
+import { SignalStrengthBar } from '../Viz/SignalStrengthBar';
+import { EvidenceCard, EvidenceItem } from '../Viz/EvidenceCard';
+import { WarningBanner, WarningType } from '../Viz/WarningBanner';
+import { Report } from '../../types/schema';
 
 interface ReportViewProps {
   handle: string;
@@ -11,12 +17,12 @@ export const ReportView: React.FC<ReportViewProps> = ({ handle }) => {
   const [loadingStep, setLoadingStep] = useState(0);
   
   const loadingSteps = [
-    "INITIALIZING NEURAL SCAN...",
-    "CONNECTING TO INSTAGRAM NODE...",
+    "INITIALIZING SIGNAL ANALYSIS...",
+    "CONNECTING TO DATA SOURCE...",
     "EXTRACTING ENGAGEMENT SIGNALS...",
-    "VERIFYING AUDIENCE AUTHENTICITY...",
-    "CALCULATING BRAND SAFETY SCORE...",
-    "FINALIZING REPORT..."
+    "ANALYZING AUDIENCE PATTERNS...",
+    "EVALUATING SAFETY SIGNALS...",
+    "COMPILING FINDINGS..."
   ];
 
   useEffect(() => {
@@ -41,13 +47,14 @@ export const ReportView: React.FC<ReportViewProps> = ({ handle }) => {
         </div>
         <div className="text-center">
             <p className="animate-pulse font-mono text-primary font-bold tracking-widest text-sm mb-2">{loadingSteps[loadingStep]}</p>
-            <p className="text-xs text-white/40 font-mono">TARGET: @{handle}</p>
+            <p className="text-xs text-white/40 font-mono">ANALYSIS SUBJECT: @{handle}</p>
+            <p className="text-xs text-yellow-500/80 mt-4 font-bold uppercase tracking-wider">Analysis may take up to 2 minutes</p>
         </div>
         
         {/* Terminal-like log output */}
         <div className="w-64 h-24 bg-black/50 rounded-lg border border-white/10 p-3 overflow-hidden mt-4">
             <div className="space-y-1 font-mono text-[10px] text-green-500/80">
-                <p>&gt; sys.init_sequence(target="{handle}")</p>
+                <p>&gt; sys.init_sequence(subject="{handle}")</p>
                 <p className="opacity-80">&gt; verifying_integrity... OK</p>
                 <p className="opacity-60">&gt; establishing_uplink... OK</p>
                 <p className="opacity-40 animate-pulse">&gt; streaming_data...</p>
@@ -91,13 +98,48 @@ export const ReportView: React.FC<ReportViewProps> = ({ handle }) => {
   const chartPath = generateChartPath(report.true_engagement.history);
   const chartFill = `${chartPath} L 1000,300 L 0,300 Z`;
 
+  // Ghost Watermark Style
+  const watermarkStyle = {
+    backgroundImage: `repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 100px,
+      rgba(255, 255, 255, 0.03) 100px,
+      rgba(255, 255, 255, 0.03) 200px
+    )`
+  };
+
+  // Determine Warning Banner
+  const getWarningBanner = (report: Report) => {
+      if (report.data_completeness === 'partial_no_comments') {
+          return <WarningBanner type="blocked" />;
+      }
+      if (report.data_completeness === 'unavailable' || report.data_completeness === 'archival') {
+           return <WarningBanner type="system" message="This report is based on archival data. Live signals may vary." />;
+      }
+       if (report.data_completeness === 'text_only') {
+           return <WarningBanner type="sparse" message="Visual analysis unavailable. Report limited to text signals." />;
+      }
+      return null;
+  };
+
   return (
-    <div className="flex h-screen overflow-hidden bg-background-dark text-white font-grotesk selection:bg-neon-lime selection:text-black">
+    <div className="flex h-screen overflow-hidden bg-background-dark text-white font-grotesk selection:bg-neon-lime selection:text-black relative">
+        {/* Persistent Watermark Overlay */}
+        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden" style={watermarkStyle}>
+            <div className="w-full h-full flex flex-wrap content-start opacity-5 transform -rotate-12 scale-150">
+                {Array(50).fill(0).map((_, i) => (
+                    <div key={i} className="m-12 font-black text-4xl text-white whitespace-nowrap">
+                        SPONSORSCOPE • @{handle} • {new Date().toLocaleDateString()} • PROBABILISTIC ESTIMATE
+                    </div>
+                ))}
+            </div>
+        </div>
       {/* Sidebar Navigation */}
       <aside className="w-72 flex-shrink-0 flex flex-col border-r border-white/10 bg-background-dark/50 backdrop-blur-xl hidden lg:flex">
         <div className="p-6 flex flex-col h-full">
           {/* Logo Section */}
-          <div className="flex items-center gap-3 mb-10">
+          <div className="flex items-center gap-3 mb-10 cursor-pointer" onClick={() => window.location.href='/'}>
             <div className="bg-neon-lime p-1.5 rounded-lg shadow-glow">
               <span className="material-symbols-outlined text-black font-bold">query_stats</span>
             </div>
@@ -120,9 +162,9 @@ export const ReportView: React.FC<ReportViewProps> = ({ handle }) => {
               <span className="material-symbols-outlined text-[20px] text-white/60 group-hover:text-white">info</span>
               <p className="text-sm font-medium text-white/70 group-hover:text-white">Research Context</p>
             </Link>
-            <Link href="/settings" className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 transition-colors cursor-pointer group">
-              <span className="material-symbols-outlined text-[20px] text-white/60 group-hover:text-white">settings</span>
-              <p className="text-sm font-medium text-white/70 group-hover:text-white">Settings</p>
+            <Link href="/correction" className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 transition-colors cursor-pointer group">
+              <span className="material-symbols-outlined text-[20px] text-white/60 group-hover:text-white">flag</span>
+              <p className="text-sm font-medium text-white/70 group-hover:text-white">Correction Request</p>
             </Link>
           </nav>
           {/* Sidebar Footer */}
@@ -145,18 +187,32 @@ export const ReportView: React.FC<ReportViewProps> = ({ handle }) => {
 
       {/* Main Content Area */}
       <main className="flex-1 overflow-y-auto scrollbar-hide">
+        {/* Epistemic State Banner */}
+        <div className="bg-slate-800/50 border-b border-white/5 px-8 py-3 flex items-center justify-between">
+            <div className="flex items-center gap-6">
+                <ConfidenceMeter level={report.true_engagement.confidence} />
+                <p className="text-[10px] font-mono text-slate-400 border-l border-white/10 pl-6">
+                    Sample Size: {report.epistemic_state.data_points_analyzed} pts
+                    <span className="mx-2 text-slate-600">|</span>
+                    Status: <span className={report.epistemic_state.status === 'ROBUST' ? 'text-green-400' : 'text-yellow-400'}>{report.epistemic_state.status}</span>
+                </p>
+            </div>
+            <Link href="/methodology" className="text-[10px] text-slate-500 hover:text-white uppercase tracking-widest font-bold transition-colors">
+                Methodology
+            </Link>
+        </div>
+
         {/* Profile Header */}
         <div className="p-8">
-          <div className="glass-card rounded-xl p-6 flex flex-col md:flex-row justify-between items-center gap-6 border-l-4 border-l-neon-lime shadow-float">
+          {getWarningBanner(report)}
+
+          <div className="glass-card rounded-xl p-6 flex flex-col md:flex-row justify-between items-center gap-6 border-l-4 border-l-blue-500 shadow-float">
             <div className="flex items-center gap-6">
               <div className="relative">
-                <div className="w-24 h-24 rounded-full border-2 border-neon-lime/30 p-1">
-                  <div className="w-full h-full rounded-full bg-slate-700 flex items-center justify-center text-3xl font-bold text-white/20">
+                <div className="w-24 h-24 rounded-full border-2 border-slate-600 p-1">
+                  <div className="w-full h-full rounded-full bg-slate-800 flex items-center justify-center text-3xl font-bold text-white/20">
                     {report.handle.charAt(0).toUpperCase()}
                   </div>
-                </div>
-                <div className="absolute -bottom-1 -right-1 bg-black rounded-full p-1.5 border border-white/10">
-                   <span className="material-symbols-outlined text-white text-[16px]">verified</span>
                 </div>
               </div>
               <div className="space-y-1">
@@ -167,113 +223,76 @@ export const ReportView: React.FC<ReportViewProps> = ({ handle }) => {
                   </div>
                 </div>
                 <div className="flex items-center gap-4 text-white/50 text-sm">
-                  <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[16px] text-neon-lime">schedule</span> Scanned {new Date(report.generated_at).toLocaleTimeString()}</span>
+                  <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[16px] text-blue-400">schedule</span> Scanned {new Date(report.generated_at).toLocaleTimeString()}</span>
                   <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[16px]">location_on</span> Global</span>
                 </div>
               </div>
             </div>
-            <button className="bg-white/5 hover:bg-white/10 border border-white/10 px-6 py-2.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2">
+            <button onClick={() => window.location.reload()} className="bg-white/5 hover:bg-white/10 border border-white/10 px-6 py-2.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2">
               <span className="material-symbols-outlined text-[18px]">refresh</span> Refresh Live Data
             </button>
           </div>
 
-          {/* 4-Pillar Scores */}
+          {/* 4-Pillar Scores (Refactored for Uncertainty) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-            {/* Score Card 1: True Engagement */}
-            <div className="glass-card p-5 rounded-xl flex flex-col justify-between h-48 group hover:border-neon-lime/30 transition-colors">
-              <div className="flex justify-between items-start">
-                <div>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold mb-1">True Engagement</p>
-                  <h3 className="text-4xl font-black text-neon-lime">{report.true_engagement.signal_strength.toFixed(0)}%</h3>
-                </div>
-                <div className="w-12 h-12 relative">
-                  <svg className="w-full h-full transform -rotate-90">
-                    <circle className="text-white/5" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" strokeWidth="3"></circle>
-                    <circle className="text-neon-lime" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" strokeDasharray="125.6" strokeDashoffset={125.6 - (125.6 * report.true_engagement.signal_strength / 100)} strokeWidth="3"></circle>
-                  </svg>
-                </div>
-              </div>
-              <div className="mt-auto">
-                <p className="text-[10px] text-white/40 mb-2 font-medium">CONFIDENCE: {(report.true_engagement.confidence * 100).toFixed(0)}%</p>
-                <div className="h-6 w-full flex items-end gap-[2px]">
-                   {report.true_engagement.history.map((val, i) => (
-                      <div key={i} className={`bg-neon-lime/${20 + i*10} w-full rounded-t-sm`} style={{ height: `${val}%` }}></div>
-                   ))}
-                </div>
-              </div>
-            </div>
+            {[
+                { 
+                    title: "Signal Consistency", 
+                    score: report.true_engagement.signal_strength, 
+                    confidence: report.true_engagement.confidence,
+                    history: report.true_engagement.history
+                },
+                { 
+                    title: "Audience Patterns", 
+                    score: report.audience_authenticity.signal_strength, 
+                    confidence: report.audience_authenticity.confidence,
+                    history: report.audience_authenticity.history
+                },
+                { 
+                    title: "Brand Safety", 
+                    score: report.brand_safety.signal_strength, 
+                    confidence: report.brand_safety.confidence,
+                    history: report.brand_safety.history
+                },
+                { 
+                    title: "Niche Credibility", 
+                    score: report.niche_credibility?.signal_strength ?? 0, 
+                    confidence: report.niche_credibility?.confidence ?? 0,
+                    history: report.niche_credibility?.history ?? []
+                }
+            ].map((metric, idx) => (
+                <div key={idx} className="glass-card p-5 rounded-xl flex flex-col justify-between h-48 hover:border-blue-400/30 transition-colors group">
+                    <div>
+                        <UncertaintyBand 
+                            score={metric.score} 
+                            confidence={metric.confidence} 
+                            label={metric.title} 
+                        />
+                    </div>
 
-            {/* Score Card 2: Audience Authenticity */}
-            <div className="glass-card p-5 rounded-xl flex flex-col justify-between h-48 hover:border-neon-lime/30 transition-colors">
-              <div className="flex justify-between items-start">
-                <div>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold mb-1">Audience Authenticity</p>
-                  <h3 className="text-4xl font-black text-neon-lime">{report.audience_authenticity.signal_strength.toFixed(0)}%</h3>
+                    <div className="mt-auto">
+                        <div className="flex justify-between items-end mb-2">
+                            <p className="text-[10px] text-slate-400 font-medium">
+                                CONFIDENCE: <span className={metric.confidence > 0.8 ? "text-blue-400" : "text-yellow-400"}>
+                                    {(metric.confidence * 100).toFixed(0)}%
+                                </span>
+                            </p>
+                        </div>
+                        {/* Mini Sparkline */}
+                        <div className="h-6 w-full flex items-end gap-[2px] opacity-50 group-hover:opacity-100 transition-opacity">
+                            {metric.history.length > 0 ? metric.history.map((val, i) => (
+                                <div key={i} className="bg-slate-500 w-full rounded-t-sm" style={{ height: `${val}%` }}></div>
+                            )) : <div className="text-[10px] text-white/20 w-full text-center">No history</div>}
+                        </div>
+                        
+                        {/* Micro-Footer for Screenshots */}
+                        <div className="border-t border-white/5 mt-2 pt-1 flex justify-between items-center opacity-50">
+                            <span className="text-[8px] font-mono text-slate-500">{report.methodology_version}</span>
+                            <span className="text-[8px] font-mono text-slate-500">{new Date().toISOString().split('T')[0]}</span>
+                        </div>
+                    </div>
                 </div>
-                <div className="w-12 h-12 relative">
-                  <svg className="w-full h-full transform -rotate-90">
-                    <circle className="text-white/5" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" strokeWidth="3"></circle>
-                    <circle className="text-neon-lime" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" strokeDasharray="125.6" strokeDashoffset={125.6 - (125.6 * report.audience_authenticity.signal_strength / 100)} strokeWidth="3"></circle>
-                  </svg>
-                </div>
-              </div>
-              <div className="mt-auto">
-                <p className="text-[10px] text-white/40 mb-2 font-medium">CONFIDENCE: {(report.audience_authenticity.confidence * 100).toFixed(0)}%</p>
-                <div className="h-6 w-full flex items-end gap-[2px]">
-                   {report.audience_authenticity.history.map((val, i) => (
-                      <div key={i} className={`bg-neon-lime/${20 + i*10} w-full rounded-t-sm`} style={{ height: `${val}%` }}></div>
-                   ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Score Card 3: Brand Safety */}
-            <div className="glass-card p-5 rounded-xl flex flex-col justify-between h-48 border-b-2 border-b-neon-lime/30 hover:bg-white/5 transition-colors">
-              <div className="flex justify-between items-start">
-                <div>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold mb-1">Brand Safety</p>
-                  <h3 className="text-4xl font-black text-neon-lime">{report.brand_safety.signal_strength.toFixed(0)}%</h3>
-                </div>
-                <div className="w-12 h-12 relative">
-                  <svg className="w-full h-full transform -rotate-90">
-                    <circle className="text-white/5" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" strokeWidth="3"></circle>
-                    <circle className="text-neon-lime" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" strokeDasharray="125.6" strokeDashoffset={125.6 - (125.6 * report.brand_safety.signal_strength / 100)} strokeWidth="3"></circle>
-                  </svg>
-                </div>
-              </div>
-              <div className="mt-auto">
-                <p className="text-[10px] text-white/40 mb-2 font-medium">CONFIDENCE: {(report.brand_safety.confidence * 100).toFixed(0)}%</p>
-                <div className="h-6 w-full flex items-end gap-[2px]">
-                   {report.brand_safety.history.map((val, i) => (
-                      <div key={i} className={`bg-neon-lime/${20 + i*10} w-full rounded-t-sm`} style={{ height: `${val}%` }}></div>
-                   ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Score Card 4: Niche Credibility */}
-            <div className="glass-card p-5 rounded-xl flex flex-col justify-between h-48 hover:border-neon-lime/30 transition-colors">
-              <div className="flex justify-between items-start">
-                <div>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold mb-1">Niche Credibility</p>
-                  <h3 className="text-4xl font-black text-neon-lime">{report.niche_credibility?.signal_strength.toFixed(0) ?? "N/A"}%</h3>
-                </div>
-                <div className="w-12 h-12 relative">
-                  <svg className="w-full h-full transform -rotate-90">
-                    <circle className="text-white/5" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" strokeWidth="3"></circle>
-                    <circle className="text-neon-lime" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" strokeDasharray="125.6" strokeDashoffset={125.6 - (125.6 * (report.niche_credibility?.signal_strength ?? 0) / 100)} strokeWidth="3"></circle>
-                  </svg>
-                </div>
-              </div>
-              <div className="mt-auto">
-                <p className="text-[10px] text-white/40 mb-2 font-medium">CONFIDENCE: {(report.niche_credibility?.confidence ?? 0 * 100).toFixed(0)}%</p>
-                <div className="h-6 w-full flex items-end gap-[2px]">
-                   {report.niche_credibility?.history.map((val, i) => (
-                      <div key={i} className={`bg-neon-lime/${20 + i*10} w-full rounded-t-sm`} style={{ height: `${val}%` }}></div>
-                   )) || <div className="text-[10px] text-white/20">No history</div>}
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
 
           {/* Main Grid Layout */}
@@ -288,10 +307,10 @@ export const ReportView: React.FC<ReportViewProps> = ({ handle }) => {
                     <p className="text-xs text-white/40">Technical line graph: Comment-to-Like Ratio</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-2xl font-bold text-neon-lime">
+                    <p className="text-2xl font-bold text-blue-400">
                         {report.true_engagement.history[report.true_engagement.history.length - 1]?.toFixed(1) || "N/A"}
                     </p>
-                    <p className="text-[10px] text-green-400 font-bold">
+                    <p className="text-[10px] text-slate-400 font-bold">
                         {report.true_engagement.benchmark_delta > 0 ? '+' : ''}{report.true_engagement.benchmark_delta.toFixed(1)}% vs BENCHMARK
                     </p>
                   </div>
@@ -300,12 +319,12 @@ export const ReportView: React.FC<ReportViewProps> = ({ handle }) => {
                   <svg className="w-full h-full preserve-3d" viewBox="0 0 1000 300">
                     <defs>
                       <linearGradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stopColor="#bfff00" stopOpacity="0.3"></stop>
-                        <stop offset="100%" stopColor="#bfff00" stopOpacity="0"></stop>
+                        <stop offset="0%" stopColor="#60a5fa" stopOpacity="0.3"></stop>
+                        <stop offset="100%" stopColor="#60a5fa" stopOpacity="0"></stop>
                       </linearGradient>
                     </defs>
                     <path d={chartFill} fill="url(#chartGradient)"></path>
-                    <path d={chartPath} fill="none" stroke="#bfff00" strokeWidth="3"></path>
+                    <path d={chartPath} fill="none" stroke="#60a5fa" strokeWidth="3"></path>
                   </svg>
                   <div className="absolute bottom-0 left-0 right-0 flex justify-between px-2 pt-4 border-t border-white/5">
                     <span className="text-[10px] font-bold text-white/30">PAST 6 MONTHS</span>
@@ -317,7 +336,7 @@ export const ReportView: React.FC<ReportViewProps> = ({ handle }) => {
               {/* Statistical Heuristics Section */}
               <div className="glass-card rounded-xl p-6">
                 <h4 className="text-lg font-bold mb-6 flex items-center gap-2">
-                  <span className="material-symbols-outlined text-neon-lime">analytics</span>
+                  <span className="material-symbols-outlined text-blue-400">analytics</span>
                   Statistical Heuristics
                 </h4>
                 <div className="overflow-x-auto">
@@ -325,7 +344,7 @@ export const ReportView: React.FC<ReportViewProps> = ({ handle }) => {
                     <thead>
                       <tr className="text-white/30 border-b border-white/5 uppercase text-[10px] tracking-widest font-bold">
                         <th className="pb-4">Metric Heuristic</th>
-                        <th className="pb-4">Current Score</th>
+                        <th className="pb-4">Current Value</th>
                         <th className="pb-4">Benchmark Delta</th>
                         <th className="pb-4">Stability</th>
                         <th className="pb-4 text-right">Methodology</th>
@@ -335,11 +354,11 @@ export const ReportView: React.FC<ReportViewProps> = ({ handle }) => {
                       {report.profile_metrics.map((metric, i) => (
                         <tr key={i} className="group hover:bg-white/5 transition-colors">
                             <td className="py-4 font-bold text-white/80">{metric.name}</td>
-                            <td className="py-4 text-neon-lime font-mono">{metric.value}</td>
-                            <td className={`py-4 font-mono ${metric.delta.includes('-') ? 'text-red-400' : 'text-green-400'}`}>{metric.delta}</td>
+                            <td className="py-4 text-blue-300 font-mono">{metric.value}</td>
+                            <td className={`py-4 font-mono ${metric.delta.includes('-') ? 'text-purple-400' : 'text-slate-400'}`}>{metric.delta}</td>
                             <td className="py-4">
                             <div className="w-16 h-1 bg-white/10 rounded-full overflow-hidden">
-                                <div className="h-full bg-neon-lime" style={{ width: `${metric.stability * 100}%` }}></div>
+                                <div className="h-full bg-blue-400" style={{ width: `${metric.stability * 100}%` }}></div>
                             </div>
                             </td>
                             <td className="py-4 text-right text-white/30"><span className="material-symbols-outlined text-[16px]">info</span></td>
@@ -353,27 +372,31 @@ export const ReportView: React.FC<ReportViewProps> = ({ handle }) => {
             
             {/* Right Column: Evidence Trail */}
             <div className="space-y-6">
-               <h3 className="text-lg font-bold">Evidence Trail</h3>
-               <div className="glass-card p-4 rounded-xl space-y-4">
-                  {/* Mock Evidence Items */}
+               <h3 className="text-lg font-bold flex items-center gap-2">
+                 <span className="material-symbols-outlined text-blue-400">gavel</span>
+                 Evidence Trail
+               </h3>
+               <p className="text-[10px] uppercase tracking-wider text-slate-500 font-bold mb-2">Sample, not exhaustive</p>
+               <div className="glass-card p-4 rounded-xl space-y-4 max-h-[800px] overflow-y-auto">
+                  {/* Evidence Items */}
                   {report.evidence_vault.length > 0 ? (
                     report.evidence_vault.map((item) => (
-                      <div key={item.evidence_id} className="p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer border border-white/5">
-                          <div className="flex justify-between items-start mb-2">
-                              <span className="text-xs font-bold text-white/60 line-clamp-1">{item.excerpt || "Evidence item"}</span>
-                              <span className="text-[10px] text-white/40 whitespace-nowrap ml-2">{new Date(item.timestamp).toLocaleTimeString()}</span>
-                          </div>
-                          <div className="flex items-center gap-2 mt-2">
-                              <span className="px-2 py-0.5 bg-green-500/20 text-green-400 text-[10px] font-bold rounded uppercase">{item.type}</span>
-                              <span className="text-neon-lime text-[10px] flex items-center gap-1 ml-auto hover:underline" onClick={() => window.open(item.source_url, '_blank')}>
-                                VIEW SOURCE <span className="material-symbols-outlined text-[10px]">open_in_new</span>
-                              </span>
-                          </div>
-                      </div>
+                      <EvidenceCard 
+                        key={item.evidence_id} 
+                        item={{
+                            id: item.evidence_id,
+                            type: item.type as any, // Cast to match EvidenceItem type
+                            content: item.excerpt,
+                            timestamp: item.timestamp,
+                            sourceUrl: item.source_url,
+                            severity: 'medium', // Default to medium for now, logic can be added later
+                        }} 
+                      />
                     ))
                   ) : (
-                    <div className="text-center py-8 text-white/30 text-xs">
-                        No public evidence found.
+                    <div className="text-center py-12 text-white/30 text-xs flex flex-col items-center gap-3">
+                        <span className="material-symbols-outlined text-4xl opacity-20">search_off</span>
+                        No public evidence found in this scan.
                     </div>
                   )}
                </div>

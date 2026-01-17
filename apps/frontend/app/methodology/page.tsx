@@ -1,9 +1,8 @@
-import { Navbar } from '../../components/Navbar';
+import { Footer } from '../../components/Footer';
 
 export default function Methodology() {
   return (
     <div className="min-h-screen bg-background-light dark:bg-background-dark text-[#101816] dark:text-white font-display">
-      <Navbar />
       <div className="max-w-4xl mx-auto px-6 py-12">
         <h1 className="text-4xl font-bold mb-2">SponsorScope Signal Overview</h1>
         <p className="text-sm text-slate-500 mb-8">Version 2.3 • Last Updated: 2026-01-16</p>
@@ -27,7 +26,7 @@ export default function Methodology() {
                 <h3 className="font-bold text-red-700 dark:text-red-400 mb-2">It is NOT:</h3>
                 <ul className="list-disc list-inside text-sm text-slate-600 dark:text-slate-400 space-y-1">
                   <li>❌ A judgment of an influencer's character.</li>
-                  <li>❌ A detection of "fake followers".</li>
+                  <li>❌ A detection of "non-organic accounts".</li>
                   <li>❌ A guarantee of campaign performance.</li>
                 </ul>
               </div>
@@ -105,6 +104,7 @@ export default function Methodology() {
           </section>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

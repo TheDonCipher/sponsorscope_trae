@@ -1,9 +1,9 @@
 import { Navbar } from '../../components/Navbar';
+import { Footer } from '../../components/Footer';
 
 export default function HelpCenter() {
   return (
     <div className="min-h-screen bg-background-light dark:bg-background-dark text-[#101816] dark:text-white font-display">
-      <Navbar />
       <div className="max-w-4xl mx-auto px-6 py-12">
         <h1 className="text-4xl font-bold mb-8">Help Center</h1>
 
@@ -48,7 +48,7 @@ export default function HelpCenter() {
                         <span className="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
                     </summary>
                     <p className="mt-4 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                        Low Confidence (0-59) indicates that our algorithms detected significant anomalies in the data. This could be due to engagement pods, bot activity, or highly irregular posting schedules. We recommend a manual review before proceeding with any sponsorship.
+                        Low Confidence (0-59) indicates that our algorithms detected significant anomalies in the data. This could be due to coordinated engagement groups, automated patterns, or highly irregular posting schedules. We recommend a manual review before proceeding with any sponsorship.
                     </p>
                 </details>
                 <details className="bg-surface-light dark:bg-surface-dark p-4 rounded-lg border border-border-light dark:border-border-dark group">
@@ -72,6 +72,7 @@ export default function HelpCenter() {
             </div>
         </section>
       </div>
+      <Footer />
     </div>
   );
 }
